@@ -37,6 +37,7 @@ func add_exclusivity(exclusive_properties: Array,
 	})
 	return true
 
+
 func add_dependency(main_property: String, dependent_property: String) -> bool:
 	if not _properties.has(main_property):
 		return false
@@ -59,6 +60,7 @@ func add_dependency(main_property: String, dependent_property: String) -> bool:
 
 	return true
 
+
 func _validate_type(object) -> void:
 	if typeof(object) == TYPE_DICTIONARY:
 		_result = {}
@@ -66,6 +68,8 @@ func _validate_type(object) -> void:
 		for key in object.keys():
 			if _properties.has(key):
 				var property = _properties[key]
+
+				property._set_dir_path(_dir_path)
 				property.validate(object[key])
 
 				_result[key] = property.get_result()

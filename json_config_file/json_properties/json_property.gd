@@ -13,6 +13,7 @@ enum Types {
 	ARRAY,
 	COLOR,
 	OBJECT,
+	FILE,
 }
 
 
@@ -44,6 +45,7 @@ enum Errors {
 
 var _result
 var _errors := []
+var _dir_path := ""
 
 
 func get_result() -> Dictionary:
@@ -68,3 +70,6 @@ func _validate_type(property) -> void:
 func _reset() -> void:
 	_result = null
 	_errors.clear()
+
+func _set_dir_path(dir_path: String) -> void:
+	_dir_path = dir_path
