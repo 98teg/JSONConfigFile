@@ -1,0 +1,63 @@
+class_name JSONProperty
+
+
+const PRECISION_ERROR = 0.00001
+
+
+enum Types {
+	BOOL,
+	NUMBER,
+	INTEGER,
+	STRING,
+	ARRAY,
+	OBJECT,
+}
+
+
+enum Errors {
+	COULD_NOT_OPEN_FILE,
+	EMPTY_FILE,
+	JSON_PARSING_ERROR,
+	WRONG_TYPE,
+	NUMBER_VALUE_LESS_THAN_MIN,
+	NUMBER_VALUE_MORE_THAN_MAX,
+	STRING_SHORTER_THAN_MIN,
+	STRING_LONGER_THAN_MAX,
+	STRING_DO_NOT_MATCH_PATTERN,
+	ARRAY_SMALLER_THAN_MIN,
+	ARRAY_BIGGER_THAN_MAX,
+	ARRAY_TWO_ELEMENTS_ARE_EQUAL,
+	OBJECT_MISSING_PROPERTY,
+	OBJECT_NON_VALID_PROPERTY,
+	OBJECT_ONE_IS_REQUIRED,
+	OBJECT_EXCLUSIVITY_ERROR,
+	OBJECT_DEPENDENCY_ERROR,
+}
+
+
+var _result
+var _errors := []
+
+
+func get_result() -> Dictionary:
+	return _result
+
+
+func has_errors() -> bool:
+	return _errors.size() != 0
+
+
+func get_errors() -> Array:
+	return _errors
+
+
+func validate(property) -> void:
+	_reset()
+	_validate_type(property)
+
+func _validate_type(property) -> void:
+	_result = property
+
+func _reset() -> void:
+	_result = null
+	_errors.clear()
