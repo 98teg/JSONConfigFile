@@ -20,12 +20,7 @@ func add_dependency(main_property: String, dependent_property: String) -> bool:
 
 
 func get_result() -> Dictionary:
-	var result = _configuration.get_result()
-
-	if result != null:
-		return result
-	else:
-		return {}
+	return _configuration.get_result()
 
 
 func has_errors() -> bool:
