@@ -5,20 +5,18 @@ var _configuration := JSONPropertyObject.new()
 var _preprocessing_errors = null
 
 
-func add_property(name : String, property : JSONProperty):
-	_configuration.add_property(name, property)
+func add_property(name: String, property: JSONProperty,
+		required := true, default_value = null):
+	_configuration.add_property(name, property, required, default_value)
 
 
-func has_property(name : String) -> bool:
-	return _configuration.has_property(name)
+func add_exclusivity(exclusive_properties: Array,
+		one_is_required := false) -> bool:
+	return _configuration.add_exclusivity(exclusive_properties, one_is_required)
 
 
-func get_property(name : String) -> JSONProperty:
-	return _configuration.get_property(name)
-
-
-func remove_property(name : String):
-	_configuration.remove_property(name)
+func add_dependency(main_property: String, dependent_property: String) -> bool:
+	return _configuration.add_dependency(main_property, dependent_property)
 
 
 func get_result() -> Dictionary:
