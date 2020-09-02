@@ -5,7 +5,7 @@ extends JSONProperty
 var _mode_flag := File.READ
 
 
-func set_mode_flag(mode_flag : int) -> void:
+func set_mode_flag(mode_flag: int) -> void:
 	_mode_flag = mode_flag
 
 

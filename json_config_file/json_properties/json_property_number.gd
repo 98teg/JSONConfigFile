@@ -6,7 +6,7 @@ var _min_value = null
 var _max_value = null
 
 
-func set_min_value(min_value : float) -> void:
+func set_min_value(min_value: float) -> void:
 	_min_value = min_value
 
 
@@ -14,7 +14,7 @@ func remove_min_value() -> void:
 	_min_value = null
 
 
-func set_max_value(max_value : float) -> void:
+func set_max_value(max_value: float) -> void:
 	_max_value = max_value
 
 

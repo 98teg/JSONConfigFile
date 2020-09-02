@@ -8,7 +8,7 @@ var _element_property := JSONProperty.new()
 var _uniqueness := false
 
 
-func set_min_size(min_size : int) -> void:
+func set_min_size(min_size: int) -> void:
 	_min_size = min_size
 
 
@@ -16,7 +16,7 @@ func remove_min_size() -> void:
 	_min_size = null
 
 
-func set_max_size(max_size : int) -> void:
+func set_max_size(max_size: int) -> void:
 	_max_size = max_size
 
 
@@ -24,7 +24,7 @@ func remove_max_size() -> void:
 	_max_size = null
 
 
-func set_element_property(element_property : JSONProperty) -> void:
+func set_element_property(element_property: JSONProperty) -> void:
 	_element_property = element_property
 
 
@@ -32,7 +32,7 @@ func remove_element_property() -> void:
 	_max_size = JSONProperty.new()
 
 
-func set_uniqueness(uniqueness : bool) -> void:
+func set_uniqueness(uniqueness: bool) -> void:
 	_uniqueness = uniqueness
 
 
