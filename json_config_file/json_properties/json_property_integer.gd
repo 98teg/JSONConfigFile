@@ -23,7 +23,7 @@ func remove_max_value() -> void:
 
 
 func _validate_type(integer) -> void:
-	if typeof(integer) == TYPE_REAL || typeof(integer) == TYPE_INT:
+	if typeof(integer) == TYPE_REAL or typeof(integer) == TYPE_INT:
 		if abs(integer - int(integer)) < PRECISION_ERROR:
 			var value = int(integer)
 			if _min_value != null and value < _min_value:
