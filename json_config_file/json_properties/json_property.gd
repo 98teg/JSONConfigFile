@@ -15,6 +15,7 @@ enum Types {
 	OBJECT,
 	FILE,
 	IMAGE,
+	JSON_CONFIG_FILE,
 }
 
 
