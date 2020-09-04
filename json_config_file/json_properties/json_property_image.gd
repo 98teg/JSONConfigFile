@@ -14,14 +14,20 @@ func _validate_type(image) -> void:
 			image_path = _dir_path.plus_file(image)
 
 		var result = Image.new()
-		var error = result.load(image_path)
-		if error != OK:
+		if File.new().file_exists(image_path):
+			var error = result.load(image_path)
+			if error != OK:
+				_errors.append({
+					"error": JSONProperty.Errors.COULD_NOT_OPEN_IMAGE,
+					"code": error,
+				})
+			else:
+				_result = result
+		else:
 			_errors.append({
 				"error": JSONProperty.Errors.COULD_NOT_OPEN_IMAGE,
-				"code": error,
+				"code": ERR_FILE_NOT_FOUND,
 			})
-		else:
-			_result = result
 	else:
 		_errors.append({
 			"error": Errors.WRONG_TYPE,
