@@ -13,14 +13,7 @@ func _validate_type(config) -> void:
 	if typeof(config) == TYPE_DICTIONARY:
 		_result = config
 	elif typeof(config) == TYPE_STRING:
-		var config_path
-
-		if config.is_abs_path():
-			config_path = config
-		else:
-			config_path = _dir_path.plus_file(config)
-
-		_json_config_file.validate(config_path)
+		_json_config_file.validate(_get_file_path(config))
 
 		for error in _json_config_file.get_errors():
 			_errors.append(error)

@@ -50,7 +50,8 @@ enum Errors {
 
 var _result
 var _errors := []
-var _dir_path := ""
+var _public_variables := {}
+var _private_variables := {}
 
 
 func get_result() -> Dictionary:
@@ -65,16 +66,39 @@ func get_errors() -> Array:
 	return _errors
 
 
-func validate(property) -> void:
+func validate(parent: JSONProperty, property) -> void:
 	_reset()
+	_copy_variables(parent)
 	_validate_type(property)
 
-func _validate_type(property) -> void:
-	_result = property
 
 func _reset() -> void:
 	_result = null
 	_errors.clear()
 
-func _set_dir_path(dir_path: String) -> void:
-	_dir_path = dir_path
+
+func _copy_variables(parent: JSONProperty) -> void:
+	_public_variables = parent._public_variables
+	_private_variables = parent._private_variables
+
+
+func _validate_type(property) -> void:
+	_result = property
+
+
+func _set_variable(name: String, value) -> void:
+	_private_variables[name] = value
+
+
+func _get_variable(name: String):
+	if _private_variables.has(name):
+		return _private_variables[name]
+	else:
+		return null
+
+
+func _get_file_path(file: String) -> String:
+	if file.is_abs_path() or _get_variable("dir_path") == null:
+		return file
+	else:
+		return _get_variable("dir_path").plus_file(file)

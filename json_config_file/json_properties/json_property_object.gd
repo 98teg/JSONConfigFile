@@ -16,7 +16,7 @@ func add_property(name: String, property: JSONProperty,
 	if required:
 		_required_properties.append(name)
 
-	property.validate(default_value)
+	property.validate(self, default_value)
 	if not property.has_errors():
 		_default_values[name] = default_value
 
@@ -69,8 +69,7 @@ func _validate_type(object) -> void:
 			if _properties.has(key):
 				var property = _properties[key]
 
-				property._set_dir_path(_dir_path)
-				property.validate(object[key])
+				property.validate(self, object[key])
 
 				_result[key] = property.get_result()
 

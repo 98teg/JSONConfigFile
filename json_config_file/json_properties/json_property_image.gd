@@ -6,12 +6,7 @@ func _validate_type(image) -> void:
 	if image is Image:
 		_result = image
 	elif typeof(image) == TYPE_STRING:
-		var image_path
-
-		if image.is_abs_path():
-			image_path = image
-		else:
-			image_path = _dir_path.plus_file(image)
+		var image_path = _get_file_path(image)
 
 		var result = Image.new()
 		if File.new().file_exists(image_path):

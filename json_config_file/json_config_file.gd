@@ -71,5 +71,5 @@ func validate(file_path : String) -> void:
 		_configuration._reset()
 		return
 
-	_configuration._set_dir_path(file_path.get_base_dir())
-	_configuration.validate(json.get_result())
+	_configuration._set_variable("dir_path", file_path.get_base_dir())
+	_configuration.validate(_configuration, json.get_result())
