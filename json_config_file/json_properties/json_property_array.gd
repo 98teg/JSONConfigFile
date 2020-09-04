@@ -6,6 +6,7 @@ var _min_size = null
 var _max_size = null
 var _element_property := JSONProperty.new()
 var _uniqueness := false
+var _unique_key := ""
 
 
 func set_min_size(min_size: int) -> void:
@@ -32,8 +33,9 @@ func remove_element_property() -> void:
 	_max_size = JSONProperty.new()
 
 
-func set_uniqueness(uniqueness: bool) -> void:
+func set_uniqueness(uniqueness: bool, unique_key := "") -> void:
 	_uniqueness = uniqueness
+	_unique_key = unique_key
 
 
 func _validate_type(array) -> void:
@@ -76,18 +78,26 @@ func _validate_type(array) -> void:
 						var value_2 = get_result()[j]
 
 						if _are_equal(value_1, value_2):
-							_errors.append({
+							var error = {
 								"error": Errors.ARRAY_TWO_ELEMENTS_ARE_EQUAL,
 								"element_1": i,
 								"element_2": j,
-							})
+							}
+
+							if typeof(value_1) == TYPE_DICTIONARY:
+								if typeof(value_2) == TYPE_DICTIONARY:
+									if _can_apply_unique_key(value_1, value_2):
+										error.key = _unique_key
+
+							_errors.append(error)
 	else:
 		_errors.append({
 			"error": Errors.WRONG_TYPE,
 			"expected": Types.ARRAY,
 		})
 
-static func _are_equal(value_1, value_2) -> bool:
+
+func _are_equal(value_1, value_2) -> bool:
 	if typeof(value_1) != typeof(value_2):
 		return false
 
@@ -100,10 +110,12 @@ static func _are_equal(value_1, value_2) -> bool:
 	else:
 		return value_1 == value_2
 
-static func _are_equal_floats(float_1 : float, float_2 : float) -> bool:
+
+func _are_equal_floats(float_1 : float, float_2 : float) -> bool:
 	return abs(float_1 - float_2) < JSONProperty.PRECISION_ERROR
 
-static func _are_equal_arrays(array_1 : Array, array_2 : Array) -> bool:
+
+func _are_equal_arrays(array_1 : Array, array_2 : Array) -> bool:
 	if array_1.size() != array_2.size():
 		return false
 
@@ -113,7 +125,17 @@ static func _are_equal_arrays(array_1 : Array, array_2 : Array) -> bool:
 	
 	return true
 
-static func _are_equal_dictionaries(dic_1 : Dictionary, dic_2 : Dictionary) -> bool:
+
+func _are_equal_dictionaries(dic_1 : Dictionary, dic_2 : Dictionary) -> bool:
+	if _can_apply_unique_key(dic_1, dic_2):
+		var unique_key = _unique_key
+		_unique_key = ""
+
+		var result = _are_equal(dic_1[unique_key], dic_2[unique_key])
+
+		_unique_key = unique_key
+		return result
+
 	if dic_1.keys().size() != dic_2.keys().size():
 		return false
 
@@ -125,3 +147,6 @@ static func _are_equal_dictionaries(dic_1 : Dictionary, dic_2 : Dictionary) -> b
 			return false
 	
 	return true
+
+func _can_apply_unique_key(dic_1 : Dictionary, dic_2 : Dictionary) -> bool:
+	return not _unique_key.empty() and dic_1.has(_unique_key) and dic_2.has(_unique_key)
