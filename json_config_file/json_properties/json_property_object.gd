@@ -20,7 +20,7 @@ func add_property(name: String, property: JSONProperty,
 
 	if default_value != null:
 		property._reset()
-		property.validate(self, default_value)
+		property._validate(self, default_value)
 		if not property.has_errors():
 			_default_values[name] = default_value
 
@@ -73,7 +73,7 @@ func _validate_type(object) -> void:
 			if object.has(property_name):
 				var property = _properties[property_name]
 
-				property.validate(self, object[property_name])
+				property._validate(self, object[property_name])
 
 				_result[property_name] = property.get_result()
 

@@ -56,7 +56,7 @@ func _validate_type(array) -> void:
 			_result = []
 
 			for i in range(array.size()):
-				_element_property.validate(self, array[i])
+				_element_property._validate(self, array[i])
 
 				_result.append(_element_property.get_result())
 

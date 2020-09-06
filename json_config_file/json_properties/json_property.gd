@@ -85,7 +85,7 @@ func set_postprocessor(processor: JSONConfigProcessor) -> void:
 	_postprocessor = processor
 
 
-func validate(parent: JSONProperty, property) -> void:
+func _validate(parent: JSONProperty, property) -> void:
 	_reset_result()
 	_copy_variables(parent)
 	_init_processors()

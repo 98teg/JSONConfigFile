@@ -61,4 +61,4 @@ func validate(file_path : String) -> void:
 		return
 
 	_configuration._set_variable("dir_path", file_path.get_base_dir())
-	_configuration.validate(_configuration, json.get_result())
+	_configuration._validate(_configuration, json.get_result())
