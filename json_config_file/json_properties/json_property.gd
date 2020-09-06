@@ -50,8 +50,11 @@ enum Errors {
 
 var _result
 var _errors := []
+var _warnings := []
 var _public_variables := {}
 var _private_variables := {}
+var _preprocessor := JSONConfigProcessor.new()
+var _postprocessor := JSONConfigProcessor.new()
 
 
 func get_result() -> Dictionary:
@@ -66,20 +69,56 @@ func get_errors() -> Array:
 	return _errors
 
 
+func has_warnings() -> bool:
+	return _warnings.size() != 0
+
+
+func get_warnings() -> Array:
+	return _warnings
+
+
+func set_preprocessor(processor: JSONConfigProcessor) -> void:
+	_preprocessor = processor
+
+
+func set_postprocessor(processor: JSONConfigProcessor) -> void:
+	_postprocessor = processor
+
+
 func validate(parent: JSONProperty, property) -> void:
-	_reset()
+	_reset_result()
 	_copy_variables(parent)
-	_validate_type(property)
+	_init_processors()
+
+	_preprocessor._process(property)
+
+	if not has_errors():
+		_validate_type(property)
+
+	if not has_errors():
+		_result = _postprocessor._process(get_result())
 
 
 func _reset() -> void:
+	_reset_result()
+	_public_variables.clear()
+	_private_variables.clear()
+
+
+func _reset_result() -> void:
 	_result = null
 	_errors.clear()
+	_warnings.clear()
 
 
 func _copy_variables(parent: JSONProperty) -> void:
 	_public_variables = parent._public_variables
 	_private_variables = parent._private_variables
+
+
+func _init_processors() -> void:
+	_preprocessor._set_property(self)
+	_postprocessor._set_property(self)
 
 
 func _validate_type(property) -> void:
