@@ -111,7 +111,7 @@ func _are_equal(value_1, value_2) -> bool:
 
 
 func _are_equal_floats(float_1 : float, float_2 : float) -> bool:
-	return abs(float_1 - float_2) < JSONProperty.PRECISION_ERROR
+	return abs(float_1 - float_2) < PRECISION_ERROR
 
 
 func _are_equal_arrays(array_1 : Array, array_2 : Array) -> bool:

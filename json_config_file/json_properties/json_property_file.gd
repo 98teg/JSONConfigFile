@@ -17,7 +17,7 @@ func _validate_type(file) -> void:
 		var error = result.open(_get_file_path(file), _mode_flag)
 		if error != OK:
 			_errors.append({
-				"error": JSONProperty.Errors.COULD_NOT_OPEN_FILE,
+				"error": Errors.COULD_NOT_OPEN_FILE,
 				"code": error,
 			})
 		else:
