@@ -3,6 +3,7 @@ extends JSONProperty
 
 
 var _properties := {}
+var _properties_in_order := []
 var _required_properties := []
 var _default_values := {}
 var _exclusivity_relations := []
@@ -12,13 +13,16 @@ var _dependency_relations := {}
 func add_property(name: String, property: JSONProperty,
 		required := true, default_value = null) -> void:
 	_properties[name] = property
+	_properties_in_order.append(name)
 
 	if required:
 		_required_properties.append(name)
 
-	property.validate(self, default_value)
-	if not property.has_errors():
-		_default_values[name] = default_value
+	if default_value != null:
+		property._reset()
+		property.validate(self, default_value)
+		if not property.has_errors():
+			_default_values[name] = default_value
 
 
 func add_exclusivity(exclusive_properties: Array,
@@ -65,31 +69,33 @@ func _validate_type(object) -> void:
 	if typeof(object) == TYPE_DICTIONARY:
 		_result = {}
 
-		for key in object.keys():
-			if _properties.has(key):
-				var property = _properties[key]
+		for property_name in _properties_in_order:
+			if object.has(property_name):
+				var property = _properties[property_name]
 
-				property.validate(self, object[key])
+				property.validate(self, object[property_name])
 
-				_result[key] = property.get_result()
+				_result[property_name] = property.get_result()
 
 				for error in property.get_errors():
 					if error.has("context"):
-						error.context = key + "/" + error.context
+						error.context = property_name + "/" + error.context
 					else:
-						error.context = key
+						error.context = property_name
 
 					_errors.append(error)
 
-				if _dependency_relations.has(key):
-					for dependent_property in _dependency_relations[key]:
+				if _dependency_relations.has(property_name):
+					for dependent_property in _dependency_relations[property_name]:
 						if not object.has(dependent_property):
 							_errors.append({
 								"error": Errors.OBJECT_DEPENDENCY_ERROR,
-								"main_property": key,
+								"main_property": property_name,
 								"dependent_property": dependent_property,
 							})
-			else:
+
+		for key in object.keys():
+			if not _properties.has(key):
 				_errors.append({
 					"error": Errors.OBJECT_NON_VALID_PROPERTY,
 					"property": key,
