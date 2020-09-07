@@ -21,7 +21,7 @@ func add_property(name: String, property: JSONProperty,
 	if default_value != null:
 		property._reset()
 		property._validate(self, default_value)
-		if not property.has_errors():
+		if not property._has_errors():
 			_default_values[name] = default_value
 
 
@@ -75,9 +75,9 @@ func _validate_type(object) -> void:
 
 				property._validate(self, object[property_name])
 
-				_result[property_name] = property.get_result()
+				_result[property_name] = property._get_result()
 
-				for error in property.get_errors():
+				for error in property._get_errors():
 					if error.has("context"):
 						error.context = property_name + "/" + error.context
 					else:

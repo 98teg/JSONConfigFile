@@ -58,9 +58,9 @@ func _validate_type(array) -> void:
 			for i in range(array.size()):
 				_element_property._validate(self, array[i])
 
-				_result.append(_element_property.get_result())
+				_result.append(_element_property._get_result())
 
-				for error in _element_property.get_errors():
+				for error in _element_property._get_errors():
 					var index = "[" + String(i) + "]"
 					
 					if error.has("context"):
@@ -70,11 +70,11 @@ func _validate_type(array) -> void:
 
 					_errors.append(error)
 
-			if _uniqueness and not has_errors():
-				for i in range(0, get_result().size()):
-					for j in range(1 + i, get_result().size()):
-						var value_1 = get_result()[i]
-						var value_2 = get_result()[j]
+			if _uniqueness and not _has_errors():
+				for i in range(0, _get_result().size()):
+					for j in range(1 + i, _get_result().size()):
+						var value_1 = _get_result()[i]
+						var value_2 = _get_result()[j]
 
 						if _are_equal(value_1, value_2):
 							var error = {

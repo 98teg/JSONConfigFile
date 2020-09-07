@@ -19,15 +19,23 @@ func add_dependency(main_property: String, dependent_property: String) -> bool:
 
 
 func get_result() -> Dictionary:
-	return _configuration.get_result()
+	return _configuration._get_result()
 
 
 func has_errors() -> bool:
-	return _configuration.has_errors()
+	return _configuration._has_errors()
 
 
 func get_errors() -> Array:
-	return _configuration.get_errors()
+	return _configuration._get_errors()
+
+
+func has_warnings() -> bool:
+	return _configuration._has_warnings()
+
+
+func get_warnings() -> Array:
+	return _configuration._get_warnings()
 
 
 func validate(file_path : String) -> void:

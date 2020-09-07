@@ -63,32 +63,32 @@ var _preprocessor := JSONConfigProcessor.new()
 var _postprocessor := JSONConfigProcessor.new()
 
 
-func get_result() -> Dictionary:
-	return _result
-
-
-func has_errors() -> bool:
-	return _errors.size() != 0
-
-
-func get_errors() -> Array:
-	return _errors
-
-
-func has_warnings() -> bool:
-	return _warnings.size() != 0
-
-
-func get_warnings() -> Array:
-	return _warnings
-
-
 func set_preprocessor(processor: JSONConfigProcessor) -> void:
 	_preprocessor = processor
 
 
 func set_postprocessor(processor: JSONConfigProcessor) -> void:
 	_postprocessor = processor
+
+
+func _get_result() -> Dictionary:
+	return _result
+
+
+func _has_errors() -> bool:
+	return _errors.size() != 0
+
+
+func _get_errors() -> Array:
+	return _errors
+
+
+func _has_warnings() -> bool:
+	return _warnings.size() != 0
+
+
+func _get_warnings() -> Array:
+	return _warnings
 
 
 func _validate(parent: JSONProperty, property) -> void:
@@ -98,11 +98,11 @@ func _validate(parent: JSONProperty, property) -> void:
 
 	_preprocessor._process(property)
 
-	if not has_errors():
+	if not _has_errors():
 		_validate_type(property)
 
-	if not has_errors():
-		_result = _postprocessor._process(get_result())
+	if not _has_errors():
+		_result = _postprocessor._process(_get_result())
 
 
 func _reset() -> void:
