@@ -30,7 +30,7 @@ func set_element_property(element_property: JSONProperty) -> void:
 
 
 func remove_element_property() -> void:
-	_max_size = JSONProperty.new()
+	_element_property = JSONProperty.new()
 
 
 func set_uniqueness(uniqueness: bool, unique_key := "") -> void:
@@ -60,15 +60,23 @@ func _validate_type(array) -> void:
 
 				_result.append(_element_property._get_result())
 
+				var index = "[" + String(i) + "]"
+
 				for error in _element_property._get_errors():
-					var index = "[" + String(i) + "]"
-					
 					if error.has("context"):
 						error.context = index + "/" + error.context
 					else:
 						error.context = index
 
 					_errors.append(error)
+
+				for warning in _element_property._get_warnings():
+					if warning.has("context"):
+						warning.context = index + "/" + warning.context
+					else:
+						warning.context = index
+
+					_warnings.append(warning)
 
 			if _uniqueness and not _has_errors():
 				for i in range(0, _get_result().size()):

@@ -32,8 +32,9 @@ func set_pattern(pattern: String) -> int:
 	return _pattern.compile(pattern)
 
 
-func remove_pattern() -> int:
-	return _pattern.compile("")
+func remove_pattern() -> void:
+	# warning-ignore:return_value_discarded
+	_pattern.compile("")
 
 
 func _validate_type(string) -> void:

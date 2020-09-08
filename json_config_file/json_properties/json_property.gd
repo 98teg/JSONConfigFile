@@ -71,7 +71,7 @@ func set_postprocessor(processor: JSONConfigProcessor) -> void:
 	_postprocessor = processor
 
 
-func _get_result() -> Dictionary:
+func _get_result():
 	return _result
 
 

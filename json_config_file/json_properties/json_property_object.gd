@@ -85,6 +85,14 @@ func _validate_type(object) -> void:
 
 					_errors.append(error)
 
+				for warning in property._get_warnings():
+					if warning.has("context"):
+						warning.context = property_name + "/" + warning.context
+					else:
+						warning.context = property_name
+
+					_warnings.append(warning)
+
 				if _dependency_relations.has(property_name):
 					for dependent_property in _dependency_relations[property_name]:
 						if not object.has(dependent_property):

@@ -18,7 +18,7 @@ func add_dependency(main_property: String, dependent_property: String) -> bool:
 	return _configuration.add_dependency(main_property, dependent_property)
 
 
-func get_result() -> Dictionary:
+func get_result():
 	return _configuration._get_result()
 
 

@@ -18,6 +18,9 @@ func _validate_type(config) -> void:
 		for error in _json_config_file.get_errors():
 			_errors.append(error)
 
+		for warning in _json_config_file.get_warnings():
+			_warnings.append(warning)
+
 		_result = _json_config_file.get_result()
 	else:
 		_errors.append({
