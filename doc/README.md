@@ -25,7 +25,7 @@ JSON Configuration File is a plugin for Godot that aims to aid reading user inpu
 ## JSON Configuration File
 ### Class name: JSONConfigFile
 ### Description
-<code class="language-gdscript" data-lang="gdscript">
+```GDScript
 func validate_json_file(json_file : String) -> JSONConfigFile:
 	var json_config_file = JSONConfigFile.new()
 
@@ -35,7 +35,7 @@ func validate_json_file(json_file : String) -> JSONConfigFile:
 	json_config_file.validate(json_file)
 
 	return json_config_file
-</code>
+```
 
 ### Functions
 | Name | Params | Description | Returns |
