@@ -1,0 +1,5 @@
+# JSONPropertyImage
+## Functions
+| Name | Params | Description | Returns |
+|-|-|-|-|
+| **set_size** | **width -> int:** <br> Width of the image. <br> **height -> int:** <br> Height of the image. <br> **resizable -> bool(true):** <br> Determines if the image is resizable. If it is, it will raise a warning whenever the size of the input image is different than this size, and then it will resize the image. If it is not, it will raise an error instead. <br> **interpolation -> int(Image.INTERPOLATE_BILINEAR):** <br> Interpolation tecnich to apply whenever the size of the input image is different and it must be resized. <br><br> **NOTE:** Check [Image.Interpolation](https://docs.godotengine.org/en/stable/classes/class_image.html?highlight=Image#enum-image-interpolation) for more information. | Sets the recommended, or required, size of the image. | Nothing. |

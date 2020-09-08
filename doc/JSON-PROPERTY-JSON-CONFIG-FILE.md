@@ -1,0 +1,5 @@
+# JSONPropertyJSONConfigurationFile
+## Functions
+| Name | Params | Description | Returns |
+|-|-|-|-|
+| **set_json_config_file** | **json_config_file -> JSONConfigFile:** <br> Object that would validate the file indicated by the path that this field contains. | Sets the JSON COnfiguration File. | Nothing. |

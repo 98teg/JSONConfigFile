@@ -1,6 +1,5 @@
-## JSON Configuration File
-### Class name: JSONConfigFile
-### Description
+# JSONConfigFile
+## Description
 ```GDScript
 func validate_json_file(json_file : String) -> JSONConfigFile:
 	# Create a JSON configuration file
@@ -37,7 +36,7 @@ Warnings
 []
 ```
 
-### Functions
+## Functions
 | Name | Params | Description | Returns |
 |-|-|-|-|
 | **add_property** | **name -> String:** <br> Name of the property. <br> **property -> JSONProperty:** <br> Object with the conditions of the property. <br> **required -> bool (true):** <br> Determines if the property is obligatory. <br> **default_value -> Variant (null):** <br> If the property is not present or if it does not meet the conditions, this is the value the result would have. | Adds a new property to the JSON configuration file. | Nothing. |
