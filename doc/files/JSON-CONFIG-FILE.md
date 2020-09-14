@@ -15,8 +15,11 @@ To add a dependency relationship, you must use the method 'add_dependency'. This
 The next step is to validate the input via the 'validate' method, which takes a file path as its parameter. After the validation process has finished, you can check if any errors or warnings have occurred via the following methods: 'has_errors', 'get_errors', 'has_warnings', and 'get_warnings'.
 
 It is important to note that the validation process represents any error or warning using a dictionary. This dictionary usually has three kinds of keys:
+
 - **The 'error'/'warning' key:** The error/warning's ID. The values of the [JSONProperty.Errors/Warnings](./ENUMS.md) enum correspond to the errors/warnings' ID.
+
 - **The params keys:** The number and the names of the params for each error/warning vary. These params contain additional information about the error/warning. In the Error or Warning section of each class of this documentation, you can consult the different params these dictionaries have.
+
 - **The 'context' key:** The name of the field that contains this error/warning.
 
 In other words, the errors/warnings are dictionaries that allow the creation of custom error messages, as this plugin aims to provide information to a user of the final application. Finally, the method 'get_result' returns the resultant dictionary from reading the file. 
@@ -24,6 +27,7 @@ In other words, the errors/warnings are dictionaries that allow the creation of 
 ## Example: Adding two properties
 
 In this example, the configuration structure has two required properties. The property 'name' must be a string, and the property 'age' must be an integer.
+
 ```GDScript
 # Create a JSON configuration file
 var json_config_file = JSONConfigFile.new()
@@ -39,7 +43,8 @@ json_config_file.validate(json_file)
 
 ### Valid JSON
 
-This JSON has the required fields with its corresponding types.
+This JSON has the required fields with its corresponding types:
+
 ```JSON
 {
     "name": "Mr. Example",
@@ -50,13 +55,16 @@ This JSON has the required fields with its corresponding types.
 ### Incorrect JSON
 
 This JSON, on the other hand, contains multiple errors. It is missing the 'name' property, the 'age' value is not the correct type, and the structure does not specify its last property:
+
 ```JSON
 {
     "age": "Not a number",
     "unrequired_property": 42
 }
 ```
+
 Returned errors:
+
 ```GDScript
 [
     {
@@ -78,6 +86,7 @@ Returned errors:
 ## Example: Adding two exclusive properties
 
 In this example, the configuration structure has two exclusive properties. The property 'student' must be a string, and the property 'employee' must be a string. Both can not appear in the same input data, but one of these properties must always be present.
+
 ```GDScript
 # Create a JSON configuration file
 var json_config_file = JSONConfigFile.new()
@@ -100,7 +109,8 @@ json_config_file.validate(json_file)
 
 ### Valid JSON
 
-This JSON has the required fields with its corresponding types.
+This JSON has the required fields with its corresponding types:
+
 ```JSON
 {
     "name": "Mr. Example",
@@ -112,13 +122,16 @@ This JSON has the required fields with its corresponding types.
 ### Incorrect JSON: Exclusive properties missing
 
 This JSON, on the other hand, contains one error. It is missing one of the exclusive properties:
+
 ```JSON
 {
     "name": "Mr. Example",
     "age": 42
 }
 ```
+
 Returned error:
+
 ```GDScript
 [
     {
@@ -131,6 +144,7 @@ Returned error:
 ### Incorrect JSON: Two exclusive properties are present
 
 This JSON also contains one error. Both of the exclusive properties are present:
+
 ```JSON
 {
     "name": "Mr. Example",
@@ -139,7 +153,9 @@ This JSON also contains one error. Both of the exclusive properties are present:
     "employee": "Company Name"
 }
 ```
+
 Returned error:
+
 ```GDScript
 [
     {
@@ -152,6 +168,7 @@ Returned error:
 ## Example: Adding a main and a dependent property
 
 In this example, the configuration structure has a main and a dependent property. The property 'street' must be a string, and the property 'city' must be a string. If the 'street' is present, the 'city' must also be specified.
+
 ```GDScript
 # Create a JSON configuration file
 var json_config_file = JSONConfigFile.new()
@@ -174,7 +191,9 @@ json_config_file.validate(json_file)
 ```
 
 ### Valid JSON: None of the optional properties are present.
+
 This JSON has none of the optional properties.
+
 ```JSON
 {
     "name": "Mr. Example",
@@ -183,7 +202,9 @@ This JSON has none of the optional properties.
 ```
 
 ### Valid JSON: Only the dependent property is specified.
+
 This JSON has specified only the dependent property.
+
 ```JSON
 {
     "name": "Mr. Example",
@@ -191,7 +212,9 @@ This JSON has specified only the dependent property.
     "city": "Big Ville"
 }
 ```
+
 If you want to make both properties mutually dependent, you must add another dependency:
+
 ```GDScript
 # Create a JSON configuration file
 var json_config_file = JSONConfigFile.new()
@@ -217,7 +240,9 @@ json_config_file.validate(json_file_path)
 ```
 
 ### Valid JSON: Both the main and the dependent property are specified.
+
 This JSON has specified both the main and the dependent property.
+
 ```JSON
 {
     "name": "Mr. Example",
@@ -228,7 +253,9 @@ This JSON has specified both the main and the dependent property.
 ```
 
 ### Incorrect JSON
+
 This JSON, on the other hand, contains one error. It is missing the dependent property:
+
 ```JSON
 {
     "name": "Mr. Example",
@@ -236,7 +263,9 @@ This JSON, on the other hand, contains one error. It is missing the dependent pr
     "street": "Long Avenue"
 }
 ```
+
 Returned error:
+
 ```GDScript
 [
     {
