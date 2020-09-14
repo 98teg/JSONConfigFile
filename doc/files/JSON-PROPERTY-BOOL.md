@@ -12,7 +12,7 @@ In this example, the configuration structure has one required property. The prop
 # Create a JSON configuration file
 var json_config_file = JSONConfigFile.new()
 
-# Add a 'bool' property, which is can be absolutly anything
+# Add a 'bool' property, which must be a boolean
 json_config_file.add_property("bool", JSONPropertyBool.new())
 
 # Validate input
@@ -50,7 +50,6 @@ Returned error:
     }
 ]
 ```
-
 
 ## Functions
 
