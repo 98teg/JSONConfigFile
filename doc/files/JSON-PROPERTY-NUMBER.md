@@ -57,14 +57,14 @@ Returned error:
     {
         "error": JSONProperty.Errors.WRONG_TYPE,
         "expected": JSONProperty.Types.NUMBER,
-        "context": "bool"
+        "context": "number"
     }
 ]
 ```
 
 ### Incorrect JSON: Can not be less than the minimum value
 
-This JSON contains one error. The 'number' property is less than the minimum value.
+This JSON contains one error. The 'number' property value is less than the minimum value.
 
 ```JSON
 {
@@ -86,7 +86,7 @@ Returned error:
 
 ### Incorrect JSON: Can not be more than the maximum value
 
-This JSON contains one error. The 'number' property is more than the maximum value.
+This JSON contains one error. The 'number' property value is more than the maximum value.
 
 ```JSON
 {
@@ -118,7 +118,6 @@ The public methods of this class are:
 | **remove_min_value** | None. | Removes any minimum boundary. | Nothing. |
 | **set_max_value** | **max_value -> float:** <br> The maximum value allowed. | Sets the maximum value allowed. | Nothing. |
 | **remove_max_value** | None. | Removes any maximum boundary. | Nothing. |
-
 
 ## Errors
 
