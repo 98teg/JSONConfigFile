@@ -157,9 +157,9 @@ Returned error:
 ]
 ```
 
-## Example: Adding a main and a dependant property
+## Example: Adding a main and a dependent property
 
-In this example, the configuration structure has a main and a dependant property. The property 'street' must be a string, and the property 'city' must be a string. If the 'street' is present, the 'city' must also be specified.
+In this example, the configuration structure has a main and a dependent property. The property 'street' must be a string, and the property 'city' must be a string. If the 'street' is present, the 'city' must also be specified.
 ```GDScript
 func validate_json_file(json_file : String) -> JSONConfigFile:
     # Create a JSON configuration file
@@ -175,7 +175,7 @@ func validate_json_file(json_file : String) -> JSONConfigFile:
     json_config_file.add_property("city", JSONPropertyString.new(), false)
 
     # Add a dependency relationship, with 'street' as the main property and
-    # 'city' as the dependant property 
+    # 'city' as the dependent property 
     json_config_file.add_dependency("street", "city")
 
     # Validate input
@@ -194,8 +194,8 @@ This JSON has none of the optional properties.
 }
 ```
 
-### Valid JSON: Only the dependant property is specified.
-This JSON has specified only the dependant property.
+### Valid JSON: Only the dependent property is specified.
+This JSON has specified only the dependent property.
 ```JSON
 {
     "name": "Mr. Example",
@@ -203,7 +203,7 @@ This JSON has specified only the dependant property.
     "city": "Big Ville"
 }
 ```
-If you want to make both properties mutually dependant, you must add another dependency:
+If you want to make both properties mutually dependent, you must add another dependency:
 ```GDScript
 func validate_json_file(json_file : String) -> JSONConfigFile:
     # Create a JSON configuration file
@@ -219,10 +219,10 @@ func validate_json_file(json_file : String) -> JSONConfigFile:
     json_config_file.add_property("city", JSONPropertyString.new(), false)
 
     # Add a dependency relationship, with 'street' as the main property and
-    # 'city' as the dependant property 
+    # 'city' as the dependent property 
     json_config_file.add_dependency("street", "city")
     # Add a dependency relationship, with 'city' as the main property and
-    # 'street' as the dependant property 
+    # 'street' as the dependent property 
     json_config_file.add_dependency("city", "street")
 
     # Validate input
@@ -232,8 +232,8 @@ func validate_json_file(json_file : String) -> JSONConfigFile:
     return json_config_file
 ```
 
-### Valid JSON: Both the main and the dependant property are specified.
-This JSON has specified both the main and the dependant property.
+### Valid JSON: Both the main and the dependent property are specified.
+This JSON has specified both the main and the dependent property.
 ```JSON
 {
     "name": "Mr. Example",
@@ -244,7 +244,7 @@ This JSON has specified both the main and the dependant property.
 ```
 
 ### Incorrect JSON
-This JSON, on the other hand, contains one error. It is missing the dependant property:
+This JSON, on the other hand, contains one error. It is missing the dependent property:
 ```JSON
 {
     "name": "Mr. Example",
