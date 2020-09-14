@@ -35,9 +35,6 @@ json_config_file.add_property("age", JSONPropertyInteger.new())
 
 # Validate input
 json_config_file.validate(json_file)
-
-# Returns the JSON configuration file
-return json_config_file
 ```
 
 ### Valid JSON
@@ -99,9 +96,6 @@ json_config_file.add_exclusivity(["student", "employee"], true)
 
 # Validate input
 json_config_file.validate(json_file)
-
-# Returns the JSON configuration file
-return json_config_file
 ```
 
 ### Valid JSON
@@ -177,9 +171,6 @@ json_config_file.add_dependency("street", "city")
 
 # Validate input
 json_config_file.validate(json_file)
-
-# Returns the JSON configuration file
-return json_config_file
 ```
 
 ### Valid JSON: None of the optional properties are present.
