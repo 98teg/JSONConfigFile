@@ -31,9 +31,9 @@ This JSON has the required field, which is a boolean:
 }
 ```
 
-### Incorrect JSON: Exclusive properties missing
+### Incorrect JSON
 
-This JSON, on the other hand, contains one error. The 'bool' property is not the correct type.
+This JSON contains one error. The 'bool' property is not the correct type.
 
 ```JSON
 {
