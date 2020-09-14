@@ -2,6 +2,8 @@
 ## Functions
 | Name | Params | Description | Returns |
 |-|-|-|-|
+| **set_preprocessor** | **processor -> JSONConfigProcessor:** <br> Object that defines the function to execute before the validation process. | Sets the process to execute before the validation process. | Nothing. |
+| **set_postprocessor** | **processor -> JSONConfigProcessor:** <br> Object that defines the function to execute after the validation process. | Sets the process to execute after the validation process. | Nothing. |
 | **set_min_size** | **min_value -> int:** <br> The minimum size allowed for the array. | Sets the minimum size allowed. | Nothing. |
 | **remove_min_size** | None. | Removes any minimum size boundary. | Nothing. |
 | **set_max_size** | **max_value -> int:** <br> The maximum size allowed for the array. | Sets the maximum size allowed. | Nothing. |
