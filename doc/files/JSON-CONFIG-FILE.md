@@ -25,20 +25,19 @@ In other words, the errors/warnings are dictionaries that allow the creation of 
 
 In this example, the configuration structure has two required properties. The property 'name' must be a string, and the property 'age' must be an integer.
 ```GDScript
-func validate_json_file(json_file : String) -> JSONConfigFile:
-    # Create a JSON configuration file
-    var json_config_file = JSONConfigFile.new()
+# Create a JSON configuration file
+var json_config_file = JSONConfigFile.new()
 
-    # Add a 'name' property, which is a string
-    json_config_file.add_property("name", JSONPropertyString.new())
-    # Add an 'age' property, which is an integer
-    json_config_file.add_property("age", JSONPropertyInteger.new())
+# Add a 'name' property, which is a string
+json_config_file.add_property("name", JSONPropertyString.new())
+# Add an 'age' property, which is an integer
+json_config_file.add_property("age", JSONPropertyInteger.new())
 
-    # Validate input
-    json_config_file.validate(json_file)
+# Validate input
+json_config_file.validate(json_file)
 
-    # Returns the JSON configuration file
-    return json_config_file
+# Returns the JSON configuration file
+return json_config_file
 ```
 
 ### Valid JSON
@@ -83,27 +82,26 @@ Returned errors:
 
 In this example, the configuration structure has two exclusive properties. The property 'student' must be a string, and the property 'employee' must be a string. Both can not appear in the same input data, but one of these properties must always be present.
 ```GDScript
-func validate_json_file(json_file : String) -> JSONConfigFile:
-    # Create a JSON configuration file
-    var json_config_file = JSONConfigFile.new()
+# Create a JSON configuration file
+var json_config_file = JSONConfigFile.new()
 
-    # Add a 'name' property, which is a string
-    json_config_file.add_property("name", JSONPropertyString.new())
-    # Add an 'age' property, which is an integer
-    json_config_file.add_property("age", JSONPropertyInteger.new())
-    # Add a 'student' property, which is a string
-    json_config_file.add_property("student", JSONPropertyString.new(), false)
-    # Add a 'employee' property, which is a string
-    json_config_file.add_property("employee", JSONPropertyString.new(), false)
+# Add a 'name' property, which is a string
+json_config_file.add_property("name", JSONPropertyString.new())
+# Add an 'age' property, which is an integer
+json_config_file.add_property("age", JSONPropertyInteger.new())
+# Add a 'student' property, which is a string
+json_config_file.add_property("student", JSONPropertyString.new(), false)
+# Add a 'employee' property, which is a string
+json_config_file.add_property("employee", JSONPropertyString.new(), false)
 
-    # Add an exclusivity relationship, at least one property must be present
-    json_config_file.add_exclusivity(["student", "employee"], true)
+# Add an exclusivity relationship, at least one property must be present
+json_config_file.add_exclusivity(["student", "employee"], true)
 
-    # Validate input
-    json_config_file.validate(json_file)
+# Validate input
+json_config_file.validate(json_file)
 
-    # Returns the JSON configuration file
-    return json_config_file
+# Returns the JSON configuration file
+return json_config_file
 ```
 
 ### Valid JSON
@@ -161,28 +159,27 @@ Returned error:
 
 In this example, the configuration structure has a main and a dependent property. The property 'street' must be a string, and the property 'city' must be a string. If the 'street' is present, the 'city' must also be specified.
 ```GDScript
-func validate_json_file(json_file : String) -> JSONConfigFile:
-    # Create a JSON configuration file
-    var json_config_file = JSONConfigFile.new()
+# Create a JSON configuration file
+var json_config_file = JSONConfigFile.new()
 
-    # Add a 'name' property, which is a string
-    json_config_file.add_property("name", JSONPropertyString.new())
-    # Add an 'age' property, which is an integer
-    json_config_file.add_property("age", JSONPropertyInteger.new())
-    # Add a 'street' property, which is a string
-    json_config_file.add_property("street", JSONPropertyString.new(), false)
-    # Add a 'city' property, which is a string
-    json_config_file.add_property("city", JSONPropertyString.new(), false)
+# Add a 'name' property, which is a string
+json_config_file.add_property("name", JSONPropertyString.new())
+# Add an 'age' property, which is an integer
+json_config_file.add_property("age", JSONPropertyInteger.new())
+# Add a 'street' property, which is a string
+json_config_file.add_property("street", JSONPropertyString.new(), false)
+# Add a 'city' property, which is a string
+json_config_file.add_property("city", JSONPropertyString.new(), false)
 
-    # Add a dependency relationship, with 'street' as the main property and
-    # 'city' as the dependent property 
-    json_config_file.add_dependency("street", "city")
+# Add a dependency relationship, with 'street' as the main property and
+# 'city' as the dependent property 
+json_config_file.add_dependency("street", "city")
 
-    # Validate input
-    json_config_file.validate(json_file)
+# Validate input
+json_config_file.validate(json_file)
 
-    # Returns the JSON configuration file
-    return json_config_file
+# Returns the JSON configuration file
+return json_config_file
 ```
 
 ### Valid JSON: None of the optional properties are present.
