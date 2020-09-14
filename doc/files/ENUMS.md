@@ -1,6 +1,6 @@
 # Enums
 
-This file contains every enum contained in JSONProperty.
+This file contains every enum defined in JSONProperty.
 
 ## Types
 
