@@ -4,6 +4,14 @@ class_name JSONConfigFile
 var _configuration := JSONPropertyObject.new()
 
 
+func set_preprocessor(processor: JSONConfigProcessor) -> void:
+	_configuration.set_preprocessor(processor)
+
+
+func set_postprocessor(processor: JSONConfigProcessor) -> void:
+	_configuration.set_postprocessor(processor)
+
+
 func add_property(name: String, property: JSONProperty,
 		required := true, default_value = null):
 	_configuration.add_property(name, property, required, default_value)
