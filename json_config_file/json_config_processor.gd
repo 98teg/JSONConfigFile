@@ -4,11 +4,11 @@ class_name JSONConfigProcessor
 var _property
 
 
-func add_error(error: String) -> void:
+func add_error(error) -> void:
 	_property._errors.append(error)
 
 
-func add_warning(warning: String) -> void:
+func add_warning(warning) -> void:
 	_property._warnings.append(warning)
 
 
