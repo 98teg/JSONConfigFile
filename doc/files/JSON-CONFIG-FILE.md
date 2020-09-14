@@ -205,31 +205,27 @@ This JSON has specified only the dependent property.
 ```
 If you want to make both properties mutually dependent, you must add another dependency:
 ```GDScript
-func validate_json_file(json_file : String) -> JSONConfigFile:
-    # Create a JSON configuration file
-    var json_config_file = JSONConfigFile.new()
+# Create a JSON configuration file
+var json_config_file = JSONConfigFile.new()
 
-    # Add a 'name' property, which is a string
-    json_config_file.add_property("name", JSONPropertyString.new())
-    # Add an 'age' property, which is an integer
-    json_config_file.add_property("age", JSONPropertyInteger.new())
-    # Add a 'street' property, which is a string
-    json_config_file.add_property("street", JSONPropertyString.new(), false)
-    # Add a 'city' property, which is a string
-    json_config_file.add_property("city", JSONPropertyString.new(), false)
+# Add a 'name' property, which is a string
+json_config_file.add_property("name", JSONPropertyString.new())
+# Add an 'age' property, which is an integer
+json_config_file.add_property("age", JSONPropertyInteger.new())
+# Add a 'street' property, which is a string
+json_config_file.add_property("street", JSONPropertyString.new(), false)
+# Add a 'city' property, which is a string
+json_config_file.add_property("city", JSONPropertyString.new(), false)
 
-    # Add a dependency relationship, with 'street' as the main property and
-    # 'city' as the dependent property 
-    json_config_file.add_dependency("street", "city")
-    # Add a dependency relationship, with 'city' as the main property and
-    # 'street' as the dependent property 
-    json_config_file.add_dependency("city", "street")
+# Add a dependency relationship, with 'street' as the main property and
+# 'city' as the dependent property 
+json_config_file.add_dependency("street", "city")
+# Add a dependency relationship, with 'city' as the main property and
+# 'street' as the dependent property 
+json_config_file.add_dependency("city", "street")
 
-    # Validate input
-    json_config_file.validate(json_file)
-
-    # Returns the JSON configuration file
-    return json_config_file
+# Validate input
+json_config_file.validate(json_file_path)
 ```
 
 ### Valid JSON: Both the main and the dependent property are specified.
