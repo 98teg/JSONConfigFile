@@ -1,5 +1,59 @@
 # JSONPropertyBool
+
+**extends [JSONProperty](./JSON-PROPERTY.md)**
+
+Only allows booleans.
+
+## Example
+
+In this example, the configuration structure has one required property. The property 'bool' must be a boolean.
+
+```GDScript
+# Create a JSON configuration file
+var json_config_file = JSONConfigFile.new()
+
+# Add a 'bool' property, which is can be absolutly anything
+json_config_file.add_property("bool", JSONPropertyBool.new())
+
+# Validate input
+json_config_file.validate(json_file_path)
+```
+
+### Valid JSON
+
+This JSON has the required field which is a boolean:
+
+```JSON
+{
+    "bool": true
+}
+```
+
+### Incorrect JSON: Exclusive properties missing
+
+This JSON, on the other hand, contains one error. The 'bool' property is not the correct type.
+
+```JSON
+{
+    "bool": 42
+}
+```
+
+Returned error:
+
+```GDScript
+[
+    {
+        "error": JSONProperty.Errors.WRONG_TYPE,
+        "expected": JSONProperty.Types.BOOL,
+        "context": "bool"
+    }
+]
+```
+
+
 ## Functions
+
 | Name | Params | Description | Returns |
 |-|-|-|-|
 | **set_preprocessor** | **processor -> JSONConfigProcessor:** <br> Object that defines the function to execute before the validation process. | Sets the process to execute before the validation process. | Nothing. |
