@@ -26,19 +26,19 @@ In other words, the errors/warnings are dictionaries that allow the creation of 
 In this example, the configuration structure has two required properties. The property 'name' must be a string, and the property 'age' must be an integer.
 ```GDScript
 func validate_json_file(json_file : String) -> JSONConfigFile:
-	# Create a JSON configuration file
-	var json_config_file = JSONConfigFile.new()
+    # Create a JSON configuration file
+    var json_config_file = JSONConfigFile.new()
 
-	# Add a 'name' property, which is a string
-	json_config_file.add_property("name", JSONPropertyString.new())
-	# Add an 'age' property, which is an integer
-	json_config_file.add_property("age", JSONPropertyInteger.new())
+    # Add a 'name' property, which is a string
+    json_config_file.add_property("name", JSONPropertyString.new())
+    # Add an 'age' property, which is an integer
+    json_config_file.add_property("age", JSONPropertyInteger.new())
 
-	# Validate input
-	json_config_file.validate(json_file)
+    # Validate input
+    json_config_file.validate(json_file)
 
-	# Returns the JSON configuration file
-	return json_config_file
+    # Returns the JSON configuration file
+    return json_config_file
 ```
 
 ### Valid JSON
@@ -61,21 +61,21 @@ This JSON, on the other hand, contains multiple errors. It is missing the 'name'
 }
 ```
 Returned errors:
-```JSON
+```GDScript
 [
-	{
-		"error": JSONProperty.Errors.WRONG_TYPE,
-		"expected": JSONProperty.Types.INTEGER,
-		"context": "age"
-	},
-	{
-		"error": JSONProperty.Errors.OBJECT_NON_VALID_PROPERTY,
-		"property": "unrequired_property"
-	},
-	{
-		"error": JSONProperty.Errors.OBJECT_MISSING_PROPERTY,
-		"property": "name"
-	}
+    {
+        "error": JSONProperty.Errors.WRONG_TYPE,
+        "expected": JSONProperty.Types.INTEGER,
+        "context": "age"
+    },
+    {
+        "error": JSONProperty.Errors.OBJECT_NON_VALID_PROPERTY,
+        "property": "unrequired_property"
+    },
+    {
+        "error": JSONProperty.Errors.OBJECT_MISSING_PROPERTY,
+        "property": "name"
+    }
 ]
 ```
 
@@ -84,26 +84,26 @@ Returned errors:
 In this example, the configuration structure has two exclusive properties. The property 'student' must be a string, and the property 'employee' must be a string. Both can not appear in the same input data, but one of these properties must always be present.
 ```GDScript
 func validate_json_file(json_file : String) -> JSONConfigFile:
-	# Create a JSON configuration file
-	var json_config_file = JSONConfigFile.new()
+    # Create a JSON configuration file
+    var json_config_file = JSONConfigFile.new()
 
-	# Add a 'name' property, which is a string
-	json_config_file.add_property("name", JSONPropertyString.new())
-	# Add an 'age' property, which is an integer
-	json_config_file.add_property("age", JSONPropertyInteger.new())
-	# Add a 'student' property, which is a string
-	json_config_file.add_property("student", JSONPropertyString.new(), false)
-	# Add a 'employee' property, which is a string
-	json_config_file.add_property("employee", JSONPropertyString.new(), false)
+    # Add a 'name' property, which is a string
+    json_config_file.add_property("name", JSONPropertyString.new())
+    # Add an 'age' property, which is an integer
+    json_config_file.add_property("age", JSONPropertyInteger.new())
+    # Add a 'student' property, which is a string
+    json_config_file.add_property("student", JSONPropertyString.new(), false)
+    # Add a 'employee' property, which is a string
+    json_config_file.add_property("employee", JSONPropertyString.new(), false)
 
-	# Add an exclusivity relationship, at least one property must be present
-	json_config_file.add_exclusivity(["student", "employee"], true)
+    # Add an exclusivity relationship, at least one property must be present
+    json_config_file.add_exclusivity(["student", "employee"], true)
 
-	# Validate input
-	json_config_file.validate(json_file)
+    # Validate input
+    json_config_file.validate(json_file)
 
-	# Returns the JSON configuration file
-	return json_config_file
+    # Returns the JSON configuration file
+    return json_config_file
 ```
 
 ### Valid JSON
@@ -127,12 +127,12 @@ This JSON, on the other hand, contains one error. It is missing one of the exclu
 }
 ```
 Returned error:
-```JSON
+```GDScript
 [
-	{
-		"error": JSONProperty.Errors.OBJECT_ONE_IS_REQUIRED,
-		"properties": ["student", "employee"]
-	}
+    {
+        "error": JSONProperty.Errors.OBJECT_ONE_IS_REQUIRED,
+        "properties": ["student", "employee"]
+    }
 ]
 ```
 
@@ -148,12 +148,12 @@ This JSON also contains one error. Both of the exclusive properties are present:
 }
 ```
 Returned error:
-```JSON
+```GDScript
 [
-	{
-		"error": JSONProperty.Errors.OBJECT_EXCLUSIVITY_ERROR,
-		"properties": ["student", "employee"]
-	}
+    {
+        "error": JSONProperty.Errors.OBJECT_EXCLUSIVITY_ERROR,
+        "properties": ["student", "employee"]
+    }
 ]
 ```
 
@@ -162,27 +162,27 @@ Returned error:
 In this example, the configuration structure has a main and a dependant property. The property 'street' must be a string, and the property 'city' must be a string. If the 'street' is present, the 'city' must also be specified.
 ```GDScript
 func validate_json_file(json_file : String) -> JSONConfigFile:
-	# Create a JSON configuration file
-	var json_config_file = JSONConfigFile.new()
+    # Create a JSON configuration file
+    var json_config_file = JSONConfigFile.new()
 
-	# Add a 'name' property, which is a string
-	json_config_file.add_property("name", JSONPropertyString.new())
-	# Add an 'age' property, which is an integer
-	json_config_file.add_property("age", JSONPropertyInteger.new())
-	# Add a 'street' property, which is a string
-	json_config_file.add_property("street", JSONPropertyString.new(), false)
-	# Add a 'city' property, which is a string
-	json_config_file.add_property("city", JSONPropertyString.new(), false)
+    # Add a 'name' property, which is a string
+    json_config_file.add_property("name", JSONPropertyString.new())
+    # Add an 'age' property, which is an integer
+    json_config_file.add_property("age", JSONPropertyInteger.new())
+    # Add a 'street' property, which is a string
+    json_config_file.add_property("street", JSONPropertyString.new(), false)
+    # Add a 'city' property, which is a string
+    json_config_file.add_property("city", JSONPropertyString.new(), false)
 
-	# Add a dependency relationship, with 'street' as the main property and
-	# 'city' as the dependant property 
-	json_config_file.add_dependency("street", "city")
+    # Add a dependency relationship, with 'street' as the main property and
+    # 'city' as the dependant property 
+    json_config_file.add_dependency("street", "city")
 
-	# Validate input
-	json_config_file.validate(json_file)
+    # Validate input
+    json_config_file.validate(json_file)
 
-	# Returns the JSON configuration file
-	return json_config_file
+    # Returns the JSON configuration file
+    return json_config_file
 ```
 
 ### Valid JSON: None of the optional properties are present.
@@ -206,30 +206,30 @@ This JSON has specified only the dependant property.
 If you want to make both properties mutually dependant, you must add another dependency:
 ```GDScript
 func validate_json_file(json_file : String) -> JSONConfigFile:
-	# Create a JSON configuration file
-	var json_config_file = JSONConfigFile.new()
+    # Create a JSON configuration file
+    var json_config_file = JSONConfigFile.new()
 
-	# Add a 'name' property, which is a string
-	json_config_file.add_property("name", JSONPropertyString.new())
-	# Add an 'age' property, which is an integer
-	json_config_file.add_property("age", JSONPropertyInteger.new())
-	# Add a 'street' property, which is a string
-	json_config_file.add_property("street", JSONPropertyString.new(), false)
-	# Add a 'city' property, which is a string
-	json_config_file.add_property("city", JSONPropertyString.new(), false)
+    # Add a 'name' property, which is a string
+    json_config_file.add_property("name", JSONPropertyString.new())
+    # Add an 'age' property, which is an integer
+    json_config_file.add_property("age", JSONPropertyInteger.new())
+    # Add a 'street' property, which is a string
+    json_config_file.add_property("street", JSONPropertyString.new(), false)
+    # Add a 'city' property, which is a string
+    json_config_file.add_property("city", JSONPropertyString.new(), false)
 
-	# Add a dependency relationship, with 'street' as the main property and
-	# 'city' as the dependant property 
-	json_config_file.add_dependency("street", "city")
-	# Add a dependency relationship, with 'city' as the main property and
-	# 'street' as the dependant property 
-	json_config_file.add_dependency("city", "street")
+    # Add a dependency relationship, with 'street' as the main property and
+    # 'city' as the dependant property 
+    json_config_file.add_dependency("street", "city")
+    # Add a dependency relationship, with 'city' as the main property and
+    # 'street' as the dependant property 
+    json_config_file.add_dependency("city", "street")
 
-	# Validate input
-	json_config_file.validate(json_file)
+    # Validate input
+    json_config_file.validate(json_file)
 
-	# Returns the JSON configuration file
-	return json_config_file
+    # Returns the JSON configuration file
+    return json_config_file
 ```
 
 ### Valid JSON: Both the main and the dependant property are specified.
@@ -253,13 +253,13 @@ This JSON, on the other hand, contains one error. It is missing the dependant pr
 }
 ```
 Returned error:
-```JSON
+```GDScript
 [
-	{
-		"error": JSONProperty.Errors.OBJECT_DEPENDENCY_ERROR,
-		"main_property": "street",
-		"dependent_property": "city"
-	}
+    {
+        "error": JSONProperty.Errors.OBJECT_DEPENDENCY_ERROR,
+        "main_property": "street",
+        "dependent_property": "city"
+    }
 ]
 ```
 
