@@ -1,7 +1,13 @@
 # Enums
+
+This file contains every enum contained in JSONProperty.
+
 ## Types
+
+This enum contains every type of field that this plugin support:
+
 ```GDScript
-JSONProperty.Types {
+Types {
     BOOL = 0,
     NUMBER = 1,
     INTEGER = 2,
@@ -16,9 +22,13 @@ JSONProperty.Types {
     IMAGE = 11,
 }
 ```
+
 ## Errors
+
+This enum contains every error that can be raised:
+
 ```GDScript
-JSONProperty.Errors {
+Errors {
 	COULD_NOT_OPEN_FILE = 0,
 	COULD_NOT_OPEN_IMAGE = 1,
 	EMPTY_FILE = 2,
@@ -46,9 +56,13 @@ JSONProperty.Errors {
 	IMAGE_WRONG_SIZE = 24,
 }
 ```
+
 ## Warnings
+
+This enum contains every warning that can be raised:
+
 ```GDScript
-JSONProperty.Warnings {
+Warnings {
 	IMAGE_WRONG_SIZE = 0,
 }
 ```
