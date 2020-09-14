@@ -2,6 +2,8 @@
 
 **extends [JSONProperty](./JSON-PROPERTY.md)**
 
+**returns: bool**
+
 Only allows booleans.
 
 ## Example
@@ -21,7 +23,7 @@ json_config_file.validate(json_file_path)
 
 ### Valid JSON
 
-This JSON has the required field which is a boolean:
+This JSON has the required field, which is a boolean:
 
 ```JSON
 {

@@ -54,7 +54,7 @@ This JSON has the required fields with its corresponding types:
 
 ### Incorrect JSON
 
-This JSON, on the other hand, contains multiple errors. It is missing the 'name' property, the 'age' value is not the correct type, and the structure does not specify its last property:
+This JSON contains multiple errors. It is missing the 'name' property, the 'age' value is not the correct type, and the structure does not specify its last property:
 
 ```JSON
 {
@@ -121,7 +121,7 @@ This JSON has the required fields with its corresponding types:
 
 ### Incorrect JSON: Exclusive properties missing
 
-This JSON, on the other hand, contains one error. It is missing one of the exclusive properties:
+This JSON contains one error. It is missing one of the exclusive properties:
 
 ```JSON
 {
@@ -143,7 +143,7 @@ Returned error:
 
 ### Incorrect JSON: Two exclusive properties are present
 
-This JSON also contains one error. Both of the exclusive properties are present:
+This JSON contains one error. Both of the exclusive properties are present:
 
 ```JSON
 {
@@ -254,7 +254,7 @@ This JSON has specified both the main and the dependent property.
 
 ### Incorrect JSON
 
-This JSON, on the other hand, contains one error. It is missing the dependent property:
+This JSON contains one error. It is missing the dependent property:
 
 ```JSON
 {

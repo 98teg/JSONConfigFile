@@ -1,4 +1,5 @@
 # JSONProperty
+**returns: [Variant](https://docs.godotengine.org/en/stable/classes/class_variant.html?highlight=Variant)**
 
 The class that defines what restrictions a given property has. This class itself does not apply any test to the user input, but every other property extends from this one.
 
