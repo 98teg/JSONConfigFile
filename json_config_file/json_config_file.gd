@@ -35,7 +35,13 @@ func has_errors() -> bool:
 
 
 func get_errors() -> Array:
-	return _configuration._get_errors()
+	var errors = _configuration._get_errors()
+
+	for error in errors:
+		if typeof(error) == TYPE_DICTIONARY:
+			error.as_text = JSONProperty._error_as_text(error)
+
+	return errors
 
 
 func has_warnings() -> bool:
@@ -43,7 +49,13 @@ func has_warnings() -> bool:
 
 
 func get_warnings() -> Array:
-	return _configuration._get_warnings()
+	var warnings = _configuration._get_warnings()
+
+	for warning in warnings:
+		if typeof(warning) == TYPE_DICTIONARY:
+			warning.as_text = JSONProperty._warning_as_text(warning)
+
+	return warnings
 
 
 func validate(file_path : String) -> void:
