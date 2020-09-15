@@ -2,7 +2,7 @@
 
 **extends [JSONProperty](./JSON-PROPERTY.md)**
 
-**returns: int**
+**returns: [int](https://docs.godotengine.org/en/stable/classes/class_int.html)**
 
 Only allows integers.
 
@@ -78,7 +78,8 @@ Returned error:
 [
     {
         "error": JSONProperty.Errors.NUMBER_VALUE_LESS_THAN_MIN,
-        "value": -0.1,
+        "value": -1,
+        "min": 0,
         "context": "integer"
     }
 ]
@@ -100,7 +101,8 @@ Returned error:
 [
     {
         "error": JSONProperty.Errors.NUMBER_VALUE_MORE_THAN_MAX,
-        "value": 10.1,
+        "value": 11,
+        "max": 10,
         "context": "integer"
     }
 ]
@@ -126,6 +128,6 @@ This class could directly raise any of the following errors:
 | Enum value | Description | Params |
 |-|-|-|
 | WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [INTEGER](./ENUMS.md).
-| NUMBER_VALUE_LESS_THAN_MIN | The value of the input is less than the minimum. | **value -> int:** <br> The input value.
-| NUMBER_VALUE_MORE_THAN_MAX | The value of the input is more than the maximum. | **value -> int:** <br> The input value.
+| NUMBER_VALUE_LESS_THAN_MIN | The value of the input is less than the minimum. | **value -> int:** <br> The input value. <br> **min -> int:** <br> The minimum value allowed.
+| NUMBER_VALUE_MORE_THAN_MAX | The value of the input is more than the maximum. | **value -> int:** <br> The input value. <br> **max -> int:** <br> The maximum value allowed.
 

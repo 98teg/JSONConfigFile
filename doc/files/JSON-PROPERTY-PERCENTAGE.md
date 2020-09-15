@@ -2,7 +2,7 @@
 
 **extends [JSONProperty](./JSON-PROPERTY.md)**
 
-**returns: float**
+**returns: [float](https://docs.godotengine.org/en/stable/classes/class_float.html?highlight=float)**
 
 Only allows real numbers, in the range [0, 1].
 

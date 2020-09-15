@@ -2,7 +2,7 @@
 
 **extends [JSONProperty](./JSON-PROPERTY.md)**
 
-**returns: bool**
+**returns: [bool](https://docs.godotengine.org/en/stable/classes/class_bool.html?highlight=bool)**
 
 Only allows booleans.
 

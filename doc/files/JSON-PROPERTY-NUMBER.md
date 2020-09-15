@@ -2,7 +2,7 @@
 
 **extends [JSONProperty](./JSON-PROPERTY.md)**
 
-**returns: float**
+**returns: [float](https://docs.godotengine.org/en/stable/classes/class_float.html?highlight=float)**
 
 Only allows real numbers.
 
@@ -79,6 +79,7 @@ Returned error:
     {
         "error": JSONProperty.Errors.NUMBER_VALUE_LESS_THAN_MIN,
         "value": -0.1,
+        "min": 0.0,
         "context": "number"
     }
 ]
@@ -101,6 +102,7 @@ Returned error:
     {
         "error": JSONProperty.Errors.NUMBER_VALUE_MORE_THAN_MAX,
         "value": 10.1,
+        "max": 10.0,
         "context": "number"
     }
 ]
@@ -126,5 +128,5 @@ This class could directly raise any of the following errors:
 | Enum value | Description | Params |
 |-|-|-|
 | WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [NUMBER](./ENUMS.md).
-| NUMBER_VALUE_LESS_THAN_MIN | The value of the input is less than the minimum. | **value -> float:** <br> The input value.
-| NUMBER_VALUE_MORE_THAN_MAX | The value of the input is more than the maximum. | **value -> float:** <br> The input value.
+| NUMBER_VALUE_LESS_THAN_MIN | The value of the input is less than the minimum. | **value -> float:** <br> The input value. <br> **min -> float:** <br> The minimum value allowed.
+| NUMBER_VALUE_MORE_THAN_MAX | The value of the input is more than the maximum. | **value -> float:** <br> The input value. <br> **max -> float:** <br> The maximum value allowed.
