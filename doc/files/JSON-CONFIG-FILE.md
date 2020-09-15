@@ -38,7 +38,7 @@ json_config_file.add_property("name", JSONPropertyString.new())
 json_config_file.add_property("age", JSONPropertyInteger.new())
 
 # Validate input
-json_config_file.validate(json_file)
+json_config_file.validate(json_file_path)
 ```
 
 ### Valid JSON
@@ -104,7 +104,7 @@ json_config_file.add_property("employee", JSONPropertyString.new(), false)
 json_config_file.add_exclusivity(["student", "employee"], true)
 
 # Validate input
-json_config_file.validate(json_file)
+json_config_file.validate(json_file_path)
 ```
 
 ### Valid JSON
@@ -187,7 +187,7 @@ json_config_file.add_property("city", JSONPropertyString.new(), false)
 json_config_file.add_dependency("street", "city")
 
 # Validate input
-json_config_file.validate(json_file)
+json_config_file.validate(json_file_path)
 ```
 
 ### Valid JSON: None of the optional properties are present.
