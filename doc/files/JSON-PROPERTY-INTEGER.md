@@ -57,7 +57,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.WRONG_TYPE,
         "expected": JSONProperty.Types.INTEGER,
-        "context": "integer"
+        "context": "integer",
+        "as_text": "Wrong type: expected 'integer', at 'integer'."
     }
 ]
 ```
@@ -80,7 +81,8 @@ Returned error:
         "error": JSONProperty.Errors.NUMBER_VALUE_LESS_THAN_MIN,
         "value": -1,
         "min": 0,
-        "context": "integer"
+        "context": "integer",
+        "as_text": "-1 is less than the minimum allowed (0), at 'integer'."
     }
 ]
 ```
@@ -103,7 +105,8 @@ Returned error:
         "error": JSONProperty.Errors.NUMBER_VALUE_MORE_THAN_MAX,
         "value": 11,
         "max": 10,
-        "context": "integer"
+        "context": "integer",
+        "as_text": "11 is more than the maximum allowed (10), at 'integer'."
     }
 ]
 ```
@@ -125,9 +128,9 @@ The public methods of this class are:
 
 This class could directly raise any of the following errors:
 
-| Enum value | Description | Params |
-|-|-|-|
-| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [INTEGER](./ENUMS.md).
-| NUMBER_VALUE_LESS_THAN_MIN | The value of the input is less than the minimum. | **value -> int:** <br> The input value. <br> **min -> int:** <br> The minimum value allowed.
-| NUMBER_VALUE_MORE_THAN_MAX | The value of the input is more than the maximum. | **value -> int:** <br> The input value. <br> **max -> int:** <br> The maximum value allowed.
+| Enum value | Description | Params | As text |
+|-|-|-|-|
+| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [INTEGER](./ENUMS.md). | Wrong type: expected 'integer' |
+| NUMBER_VALUE_LESS_THAN_MIN | The value of the input is less than the minimum. | **value -> int:** <br> The input value. <br> **min -> int:** <br> The minimum value allowed. | {value} is less than the minimum allowed ({min}) |
+| NUMBER_VALUE_MORE_THAN_MAX | The value of the input is more than the maximum. | **value -> int:** <br> The input value. <br> **max -> int:** <br> The maximum value allowed. | {value} is more than the maximum allowed ({max}) |
 

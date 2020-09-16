@@ -48,7 +48,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.WRONG_TYPE,
         "expected": JSONProperty.Types.PERCENTAGE,
-        "context": "percentage"
+        "context": "percentage",
+        "as_text": "Wrong type: expected 'percentage', at 'percentage'."
     }
 ]
 ```
@@ -70,7 +71,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.PERCENTAGE_LESS_THAN_ZERO,
         "value": -0.1,
-        "context": "percentage"
+        "context": "percentage",
+        "as_text": "-0.1 is less than 0, at 'percentage'."
     }
 ]
 ```
@@ -92,7 +94,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.PERCENTAGE_MORE_THAN_ONE,
         "value": 1.1,
-        "context": "percentage"
+        "context": "percentage",
+        "as_text": "1.1 is more than 1, at 'percentage'."
     }
 ]
 ```
@@ -110,8 +113,8 @@ The public methods of this class are:
 
 This class could directly raise any of the following errors:
 
-| Enum value | Description | Params |
-|-|-|-|
-| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [PERCENTAGE](./ENUMS.md).
-| PERCENTAGE_LESS_THAN_ZERO | The value of the input is less than zero. | **value -> float:** <br> The input value.
-| PERCENTAGE_MORE_THAN_ONE | The value of the input is more than one. | **value -> float:** <br> The input value.
+| Enum value | Description | Params | As text |
+|-|-|-|-|
+| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [PERCENTAGE](./ENUMS.md). | Wrong type: expected 'percentage' |
+| PERCENTAGE_LESS_THAN_ZERO | The value of the input is less than zero. | **value -> float:** <br> The input value. | {value} is less than 0 |
+| PERCENTAGE_MORE_THAN_ONE | The value of the input is more than one. | **value -> float:** <br> The input value. | {value} is more than 1 |

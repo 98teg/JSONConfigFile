@@ -48,7 +48,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.WRONG_TYPE,
         "expected": JSONProperty.Types.BOOL,
-        "context": "bool"
+        "context": "bool",
+        "as_text": "Wrong type: expected 'boolean', at 'bool'."
     }
 ]
 ```
@@ -66,6 +67,6 @@ The public methods of this class are:
 
 This class could directly raise any of the following errors:
 
-| Enum value | Description | Params |
-|-|-|-|
-| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [BOOL](./ENUMS.md).
+| Enum value | Description | Params | As text |
+|-|-|-|-|
+| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [BOOL](./ENUMS.md). | Wrong type: expected 'boolean' |

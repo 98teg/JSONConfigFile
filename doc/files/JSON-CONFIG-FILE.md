@@ -70,15 +70,18 @@ Returned errors:
     {
         "error": JSONProperty.Errors.WRONG_TYPE,
         "expected": JSONProperty.Types.INTEGER,
-        "context": "age"
+        "context": "age",
+        "as_text": "Wrong type: expected 'integer', at 'age'."
     },
     {
         "error": JSONProperty.Errors.OBJECT_NON_VALID_PROPERTY,
-        "property": "unrequired_property"
+        "property": "unrequired_property",
+        "as_text": "The property 'unrequired_property' is not a valid one."
     },
     {
         "error": JSONProperty.Errors.OBJECT_MISSING_PROPERTY,
-        "property": "name"
+        "property": "name",
+        "as_text": "The property 'name' has not been specified."
     }
 ]
 ```
@@ -136,7 +139,8 @@ Returned error:
 [
     {
         "error": JSONProperty.Errors.OBJECT_ONE_IS_REQUIRED,
-        "properties": ["student", "employee"]
+        "properties": ["student", "employee"],
+        "as_text": "One of this properties needs to be specified: student, employee."
     }
 ]
 ```
@@ -160,7 +164,8 @@ Returned error:
 [
     {
         "error": JSONProperty.Errors.OBJECT_EXCLUSIVITY_ERROR,
-        "properties": ["student", "employee"]
+        "properties": ["student", "employee"],
+        "as_text": "This properties can not be present at the same time: student, employee."
     }
 ]
 ```
@@ -271,7 +276,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.OBJECT_DEPENDENCY_ERROR,
         "main_property": "street",
-        "dependent_property": "city"
+        "dependent_property": "city",
+        "as_text": "'street' property has been specified, but 'city' is missing."
     }
 ]
 ```
@@ -298,14 +304,14 @@ The public methods of this class are:
 
 This class could directly raise any of the following errors:
 
-| Enum value | Description | Params |
-|-|-|-|
-| COULD_NOT_OPEN_FILE | The file path leads to a nonexistent file or an error occurred when opening the file. | **code -> int:** <br> Error code returned by [File.open()](https://docs.godotengine.org/en/stable/classes/class_file.html?highlight=File#class-file-method-open). |
-| EMPTY_FILE | The input file is empty. | None. |
-| JSON_PARSING_ERROR | An error occurred when parsing the JSON. These are only syntax errors. | **code -> int:** <br> Error returned by [JSONParseResult.get_error()](https://docs.godotengine.org/en/stable/classes/class_jsonparseresult.html#property-descriptions). <br> **line -> int:** <br> Line where the error ocurred. <br> **string -> String:** <br> Message that describes the error.|
-| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [OBJECT](./ENUMS.md).
-OBJECT_MISSING_PROPERTY | The input does not specify a required property. | **property -> String:** <br> Name of the required property. |
-OBJECT_NON_VALID_PROPERTY | The input specifies a property not defined by the structure. | **property -> String:** <br> Name of the non-valid property. | 
-OBJECT_ONE_IS_REQUIRED | If the structure defines an array of exclusive properties, and it specifies that at least one must be present, this error arises whenever none of these properties are present. | **properties -> Array:** <br> List of names of the exclusive properties. |
-OBJECT_EXCLUSIVITY_ERROR | The input specifies two properties present in the same array of exclusive properties. | **properties -> Array:** <br> List of the exclusive properties specified in the input. |
-OBJECT_DEPENDENCY_ERROR | The main property is present in the input but not the dependent one | **main_property -> String:** <br> Name of the main property. <br> **dependent_property -> String:** <br> Name of the dependent property. |
+| Enum value | Description | Params | As text |
+|-|-|-|-|
+| COULD_NOT_OPEN_FILE | The file path leads to a nonexistent file or an error occurred when opening the file. | **code -> int:** <br> Error code returned by [File.open()](https://docs.godotengine.org/en/stable/classes/class_file.html?highlight=File#class-file-method-open). | Could not open the file |
+| EMPTY_FILE | The input file is empty. | None. | The configuration file can not be empty |
+| JSON_PARSING_ERROR | An error occurred when parsing the JSON. These are only syntax errors. | **code -> int:** <br> Error returned by [JSONParseResult.get_error()](https://docs.godotengine.org/en/stable/classes/class_jsonparseresult.html#property-descriptions). <br> **line -> int:** <br> Line where the error ocurred. <br> **string -> String:** <br> Message that describes the error.| JSON parsing error at line {line}: \"{string}\" |
+| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [OBJECT](./ENUMS.md). | Wrong type: expected 'object' |
+OBJECT_MISSING_PROPERTY | The input does not specify a required property. | **property -> String:** <br> Name of the required property. | The property '{property}' has not been specified |
+OBJECT_NON_VALID_PROPERTY | The input specifies a property not defined by the structure. | **property -> String:** <br> Name of the non-valid property. | The property '{property}' is not a valid one |
+OBJECT_ONE_IS_REQUIRED | If the structure defines an array of exclusive properties, and it specifies that at least one must be present, this error arises whenever none of these properties are present. | **properties -> Array:** <br> List of names of the exclusive properties. | One of this properties needs to be specified: {properties} |
+OBJECT_EXCLUSIVITY_ERROR | The input specifies two properties present in the same array of exclusive properties. | **properties -> Array:** <br> List of the exclusive properties specified in the input. | This properties can not be present at the same time: {properties} |
+OBJECT_DEPENDENCY_ERROR | The main property is present in the input but not the dependent one | **main_property -> String:** <br> Name of the main property. <br> **dependent_property -> String:** <br> Name of the dependent property. | '{main_property}' property has been specified, but '{dependent_property}' is missing |

@@ -58,7 +58,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.WRONG_TYPE,
         "expected": JSONProperty.Types.COLOR,
-        "context": "color"
+        "context": "color",
+        "as_text": "Wrong type: expected 'color', at 'color'."
     }
 ]
 ```
@@ -80,7 +81,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.COLOR_WRONG_SIZE,
         "size": 1,
-        "context": "color"
+        "context": "color",
+        "as_text": "The color is 1 element(s) long, when it should be 3 to 4, at 'color'."
     }
 ]
 ```
@@ -101,7 +103,8 @@ Returned error:
 [
     {
         "error": JSONProperty.Errors.COLOR_WRONG_TYPE,
-        "context": "color/[0]"
+        "context": "color/[0]",
+        "as_text": "Wrong type: expected 'integer' in the range [0, 255], at 'color/[0]'."
     }
 ]
 ```
@@ -123,7 +126,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.COLOR_OUT_OF_RANGE,
         "value": 256,
-        "context": "color/[0]"
+        "context": "color/[0]",
+        "as_text": "256 is out of the range [0, 255], at 'color/[0]'."
     }
 ]
 ```
@@ -141,9 +145,9 @@ The public methods of this class are:
 
 This class could directly raise any of the following errors:
 
-| Enum value | Description | Params |
-|-|-|-|
-| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [COLOR](./ENUMS.md).
-| COLOR_WRONG_SIZE | The size of the color array is not 3 or 4. | **size -> int:** <br> The input size.
-| COLOR_WRONG_TYPE | The type of one of the color array elements is not an integer. | None.
-| COLOR_OUT_OF_RANGE | The value of one of the color array elements is not in the range [0, 256]. | **value -> int:** <br> The input value.
+| Enum value | Description | Params | As text |
+|-|-|-|-|
+| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [COLOR](./ENUMS.md). | Wrong type: expected 'color' |
+| COLOR_WRONG_SIZE | The size of the color array is not 3 or 4. | **size -> int:** <br> The input size. | The color is {size} element(s) long, when it should be 3 to 4 |
+| COLOR_WRONG_TYPE | The type of one of the color array elements is not an integer. | None. | Wrong type: expected 'integer' in the range [0, 255] |
+| COLOR_OUT_OF_RANGE | The value of one of the color array elements is not in the range [0, 256]. | **value -> int:** <br> The input value. | {value} is out of the range [0, 255] |

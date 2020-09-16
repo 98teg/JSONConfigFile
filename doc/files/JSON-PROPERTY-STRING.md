@@ -63,7 +63,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.WRONG_TYPE,
         "expected": JSONProperty.Types.STRING,
-        "context": "string"
+        "context": "string",
+        "as_text": "Wrong type: expected 'string', at 'string'."
     }
 ]
 ```
@@ -86,7 +87,8 @@ Returned error:
         "error": JSONProperty.Errors.STRING_SHORTER_THAN_MIN,
         "length": 2,
         "min": 3,
-        "context": "string"
+        "context": "string",
+        "as_text": "The string length (2) is shorter than the minimum length allowed (3), at 'string'."
     }
 ]
 ```
@@ -110,7 +112,8 @@ Returned error:
         "error": JSONProperty.Errors.STRING_LONGER_THAN_MAX,
         "length": 6,
         "max": 5,
-        "context": "string"
+        "context": "string",
+        "as_text": "The string length (6) is longer than the maximum length allowed (5), at 'string'."
     }
 ]
 ```
@@ -133,7 +136,8 @@ Returned error:
         "error": JSONProperty.Errors.STRING_DO_NOT_MATCH_PATTERN,
         "value": "ABC4",
         "pattern": "^[a-zA-Z]+$",
-        "context": "string",  
+        "context": "string",
+        "as_text": "'ABC4' does not match the specified pattern (^[a-zA-Z]+$), at 'string'."
     }
 ]
 ```
@@ -157,9 +161,9 @@ The public methods of this class are:
 
 This class could directly raise any of the following errors:
 
-| Enum value | Description | Params |
-|-|-|-|
-| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [STRING](./ENUMS.md).
-| STRING_SHORTER_THAN_MIN | The input is shorter than the minimum length. | **length -> int:** <br> The input length. <br> **min -> int:** <br> The minimum lenght allowed.
-| STRING_LONGER_THAN_MAX | The input is longer than the maximum length. | **length -> int:** <br> The input length. <br> **max -> int:** <br> The maximum lenght allowed.
-| STRING_DO_NOT_MATCH_PATTERN | The input does not match the pattern. | **value -> String:** <br> The input value. <br> **pattern -> String:** <br> The pattern the input should match.
+| Enum value | Description | Params | As text |
+|-|-|-|-|
+| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [STRING](./ENUMS.md). | Wrong type: expected 'string' |
+| STRING_SHORTER_THAN_MIN | The input is shorter than the minimum length. | **length -> int:** <br> The input length. <br> **min -> int:** <br> The minimum lenght allowed. | The string length ({length}) is shorter than the minimum length allowed ({min}) |
+| STRING_LONGER_THAN_MAX | The input is longer than the maximum length. | **length -> int:** <br> The input length. <br> **max -> int:** <br> The maximum lenght allowed. | The string length ({length}) is longer than the maximum length allowed ({max}) |
+| STRING_DO_NOT_MATCH_PATTERN | The input does not match the pattern. | **value -> String:** <br> The input value. <br> **pattern -> String:** <br> The pattern the input should match. | '{value}' does not match the specified pattern ({pattern}) |

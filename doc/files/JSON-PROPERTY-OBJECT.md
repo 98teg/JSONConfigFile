@@ -71,17 +71,20 @@ Returned errors:
     {
         "error": JSONProperty.Errors.WRONG_TYPE,
         "expected": JSONProperty.Types.INTEGER,
-        "context": "person/age"
+        "context": "person/age",
+        "as_text": "Wrong type: expected 'integer', at 'person/age'."
     },
     {
         "error": JSONProperty.Errors.OBJECT_NON_VALID_PROPERTY,
         "property": "unrequired_property",
-        "context": "person"
+        "context": "person",
+        "as_text": "The property 'unrequired_property' is not a valid one, at 'person'."
     },
     {
         "error": JSONProperty.Errors.OBJECT_MISSING_PROPERTY,
         "property": "name",
-        "context": "person"
+        "context": "person",
+        "as_text": "The property 'name' has not been specified, at 'person'."
     }
 ]
 ```
@@ -149,7 +152,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.OBJECT_ONE_IS_REQUIRED,
         "properties": ["student", "employee"],
-        "context": "person"
+        "context": "person",
+        "as_text": "One of this properties needs to be specified: student, employee, at 'person'."
     }
 ]
 ```
@@ -176,7 +180,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.OBJECT_EXCLUSIVITY_ERROR,
         "properties": ["student", "employee"],
-        "context": "person"
+        "context": "person",
+        "as_text": "This properties can not be present at the same time: student, employee, at 'person'."
     }
 ]
 ```
@@ -306,7 +311,8 @@ Returned error:
         "error": JSONProperty.Errors.OBJECT_DEPENDENCY_ERROR,
         "main_property": "street",
         "dependent_property": "city",
-        "context": "person"
+        "context": "person",
+        "as_text": "'street' property has been specified, but 'city' is missing, at 'person'."
     }
 ]
 ```
@@ -327,11 +333,11 @@ The public methods of this class are:
 
 This class could directly raise any of the following errors:
 
-| Enum value | Description | Params |
-|-|-|-|
-| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [OBJECT](./ENUMS.md).
-OBJECT_MISSING_PROPERTY | The input does not specify a required property. | **property -> String:** <br> Name of the required property. |
-OBJECT_NON_VALID_PROPERTY | The input specifies a property not defined by the structure. | **property -> String:** <br> Name of the non-valid property. | 
-OBJECT_ONE_IS_REQUIRED | If the structure defines an array of exclusive properties, and it specifies that at least one must be present, this error arises whenever none of these properties are present. | **properties -> Array:** <br> List of names of the exclusive properties. |
-OBJECT_EXCLUSIVITY_ERROR | The input specifies two properties present in the same array of exclusive properties. | **properties -> Array:** <br> List of the exclusive properties specified in the input. |
-OBJECT_DEPENDENCY_ERROR | The main property is present in the input but not the dependent one | **main_property -> String:** <br> Name of the main property. <br> **dependent_property -> String:** <br> Name of the dependent property. |
+| Enum value | Description | Params | As text |
+|-|-|-|-|
+| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [OBJECT](./ENUMS.md). | Wrong type: expected 'object' |
+OBJECT_MISSING_PROPERTY | The input does not specify a required property. | **property -> String:** <br> Name of the required property. | The property '{property}' has not been specified |
+OBJECT_NON_VALID_PROPERTY | The input specifies a property not defined by the structure. | **property -> String:** <br> Name of the non-valid property. | The property '{property}' is not a valid one |
+OBJECT_ONE_IS_REQUIRED | If the structure defines an array of exclusive properties, and it specifies that at least one must be present, this error arises whenever none of these properties are present. | **properties -> Array:** <br> List of names of the exclusive properties. | One of this properties needs to be specified: {properties} |
+OBJECT_EXCLUSIVITY_ERROR | The input specifies two properties present in the same array of exclusive properties. | **properties -> Array:** <br> List of the exclusive properties specified in the input. | This properties can not be present at the same time: {properties} |
+OBJECT_DEPENDENCY_ERROR | The main property is present in the input but not the dependent one | **main_property -> String:** <br> Name of the main property. <br> **dependent_property -> String:** <br> Name of the dependent property. | '{main_property}' property has been specified, but '{dependent_property}' is missing |

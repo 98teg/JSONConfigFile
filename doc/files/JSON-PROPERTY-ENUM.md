@@ -57,7 +57,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.WRONG_TYPE,
         "expected": JSONProperty.Types.ENUM,
-        "context": "enum"
+        "context": "enum",
+        "as_text": "Wrong type: expected 'string', at 'enum'."
     }
 ]
 ```
@@ -79,7 +80,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.ENUM_NOT_VALID,
         "value": "FOURTH",
-        "context": "enum"
+        "context": "enum",
+        "as_text": "'FOURTH' is not in the list of valid values, at 'enum'."
     }
 ]
 ```
@@ -98,7 +100,7 @@ The public methods of this class are:
 
 This class could directly raise any of the following errors:
 
-| Enum value | Description | Params |
-|-|-|-|
-| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [ENUM](./ENUMS.md).
-| ENUM_NOT_VALID | The input is not present in the list of possible values. | **value -> String:** <br> The input value.
+| Enum value | Description | Params | As text |
+|-|-|-|-|
+| WRONG_TYPE | The type of the input does not match the expected one. | **expected -> int:** <br> Takes the value [ENUM](./ENUMS.md). | Wrong type: expected 'string' |
+| ENUM_NOT_VALID | The input is not present in the list of possible values. | **value -> String:** <br> The input value. | '{value}' is not in the list of valid values |
