@@ -112,7 +112,7 @@ const MESSAGE_ARRAY_BIGGER_THAN_MAX = "The array size (%d) is bigger than the ma
 const MESSAGE_ARRAY_TWO_ELEMENTS_ARE_EQUAL = "The array contains two elements that are equal: [%d] and [%d]"
 const MESSAGE_COLOR_WRONG_SIZE = "The color is %d element(s) long, when it should be 3 to 4"
 const MESSAGE_COLOR_WRONG_TYPE = "Wrong type: expected 'integer' in the range [0, 255]"
-const MESSAGE_COLOR_OUT_OF_RANGE = "Element out of the range [0, 255]"
+const MESSAGE_COLOR_OUT_OF_RANGE = "%d is out of the range [0, 255]"
 const MESSAGE_OBJECT_MISSING_PROPERTY = "The property '%s' has not been specified"
 const MESSAGE_OBJECT_NON_VALID_PROPERTY = "The property '%s' is not a valid one"
 const MESSAGE_OBJECT_ONE_IS_REQUIRED = "One of this properties needs to be specified: %s"
@@ -184,7 +184,7 @@ static func _error_as_text(error: Dictionary) -> String:
 			Errors.COLOR_WRONG_TYPE:
 				error_as_text = MESSAGE_COLOR_WRONG_TYPE
 			Errors.COLOR_OUT_OF_RANGE:
-				error_as_text = MESSAGE_COLOR_OUT_OF_RANGE
+				error_as_text = MESSAGE_COLOR_OUT_OF_RANGE % error.value
 			Errors.OBJECT_MISSING_PROPERTY:
 				error_as_text = MESSAGE_OBJECT_MISSING_PROPERTY % error.property
 			Errors.OBJECT_NON_VALID_PROPERTY:
