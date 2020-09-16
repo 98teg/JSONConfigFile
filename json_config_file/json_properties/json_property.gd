@@ -110,6 +110,7 @@ const MESSAGE_ENUM_NOT_VALID = "'%s' is not in the list of valid values"
 const MESSAGE_ARRAY_SMALLER_THAN_MIN = "The array size (%d) is smaller than the minimum allowed (%d)"
 const MESSAGE_ARRAY_BIGGER_THAN_MAX = "The array size (%d) is bigger than the maximum allowed (%d)"
 const MESSAGE_ARRAY_TWO_ELEMENTS_ARE_EQUAL = "The array contains two elements that are equal: [%d] and [%d]"
+const MESSAGE_ARRAY_TWO_KEYS_ARE_EQUAL = "The array contains two objects with the same '%s': [%d] and [%d]"
 const MESSAGE_COLOR_WRONG_SIZE = "The color is %d element(s) long, when it should be 3 to 4"
 const MESSAGE_COLOR_WRONG_TYPE = "Wrong type: expected 'integer' in the range [0, 255]"
 const MESSAGE_COLOR_OUT_OF_RANGE = "%d is out of the range [0, 255]"
@@ -178,7 +179,10 @@ static func _error_as_text(error: Dictionary) -> String:
 			Errors.ARRAY_BIGGER_THAN_MAX:
 				error_as_text = MESSAGE_ARRAY_BIGGER_THAN_MAX % [error.size, error.max]
 			Errors.ARRAY_TWO_ELEMENTS_ARE_EQUAL:
-				error_as_text = MESSAGE_ARRAY_TWO_ELEMENTS_ARE_EQUAL % [error.element_1, error.element_2]
+				if error.has("key"):
+					error_as_text = MESSAGE_ARRAY_TWO_KEYS_ARE_EQUAL % [error.key, error.element_1, error.element_2]
+				else:
+					error_as_text = MESSAGE_ARRAY_TWO_ELEMENTS_ARE_EQUAL % [error.element_1, error.element_2]
 			Errors.COLOR_WRONG_SIZE:
 				error_as_text = MESSAGE_COLOR_WRONG_SIZE % error.size
 			Errors.COLOR_WRONG_TYPE:
