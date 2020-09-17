@@ -51,6 +51,29 @@ This JSON has the required fields with its corresponding types:
 }
 ```
 
+### Incorrect JSON: Wrong type
+
+This JSON contains one error. The 'person' property is not the correct type.
+
+```JSON
+{
+    "person": 42
+}
+```
+
+Returned error:
+
+```GDScript
+[
+    {
+        "error": JSONProperty.Errors.WRONG_TYPE,
+        "expected": JSONProperty.Types.OBJECT,
+        "context": "person",
+        "as_text": "Wrong type: expected 'object', at 'person'."
+    }
+]
+```
+
 ### Incorrect JSON: 'person' property contains errors
 
 This JSON contains multiple errors in its 'person' property. It is missing the 'name' property, the 'age' value is not the correct type, and the structure does not specify its last property:
