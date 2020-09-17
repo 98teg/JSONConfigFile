@@ -155,7 +155,7 @@ Returned error:
     {
         "error": JSONProperty.Errors.ARRAY_BIGGER_THAN_MAX,
         "size": 4,
-        "min": 3,
+        "max": 3,
         "context": "furniture",
         "as_text": "The array size (4) is bigger than the maximum allowed (3), at 'furniture'."
     }
