@@ -10,9 +10,7 @@ func set_json_config_file(json_config_file: JSONConfigFile) -> void:
 
 
 func _validate_type(config) -> void:
-	if typeof(config) == TYPE_DICTIONARY:
-		_result = config
-	elif typeof(config) == TYPE_STRING:
+	if typeof(config) == TYPE_STRING:
 		_json_config_file.validate(_get_file_path(config))
 
 		for error in _json_config_file.get_errors():
