@@ -12,17 +12,19 @@ var _dependency_relations := {}
 
 func add_property(name: String, property: JSONProperty,
 		required := true, default_value = null) -> void:
-	_properties[name] = property
-	_properties_in_order.append(name)
 
-	if required:
-		_required_properties.append(name)
-
-	if default_value != null:
-		property._reset()
-		property._validate(self, default_value)
-		if not property._has_errors():
-			_default_values[name] = default_value
+	if property != null:
+		_properties[name] = property
+		_properties_in_order.append(name)
+	
+		if required:
+			_required_properties.append(name)
+	
+		if default_value != null:
+			property._reset()
+			property._validate(self, default_value)
+			if not property._has_errors():
+				_default_values[name] = default_value
 
 
 func add_exclusivity(exclusive_properties: Array,
