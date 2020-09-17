@@ -30,7 +30,7 @@ const MESSAGE_ARRAY = "array"
 const MESSAGE_COLOR = "color"
 const MESSAGE_OBJECT = "object"
 const MESSAGE_FILE = "file path"
-const MESSAGE_JSON_CONFIG_FILE = "JSON config file path"
+const MESSAGE_JSON_CONFIG_FILE = "JSON configuration file path"
 const MESSAGE_IMAGE = "image path"
 
 
