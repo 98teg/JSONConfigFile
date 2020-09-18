@@ -202,7 +202,7 @@ static func _error_as_text(error: Dictionary) -> String:
 			Errors.IMAGE_WRONG_SIZE:
 				error_as_text = MESSAGE_IMAGE_WRONG_SIZE % [error.expected_size[0], error.expected_size[1]]
 			_:
-				error_as_text = "This error message is not defined"
+				error_as_text = error.error
 	else:
 		error_as_text = "This error message is not defined"
 
@@ -227,7 +227,7 @@ static func _warning_as_text(warning: Dictionary) -> String:
 			Warnings.IMAGE_WRONG_SIZE:
 				warning_as_text = MESSAGE_IMAGE_WRONG_SIZE % [warning.expected_size[0], warning.expected_size[1]]
 			_:
-				warning_as_text =  "This warning message is not defined"
+				warning_as_text = warning.warning
 	else:
 		warning_as_text =  "This warning message is not defined"
 
