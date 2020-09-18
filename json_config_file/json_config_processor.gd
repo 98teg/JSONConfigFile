@@ -4,11 +4,11 @@ class_name JSONConfigProcessor
 var _property
 
 
-func add_error(error) -> void:
+func add_error(error: Dictionary) -> void:
 	_property._errors.append(error)
 
 
-func add_warning(warning) -> void:
+func add_warning(warning: Dictionary) -> void:
 	_property._warnings.append(warning)
 
 
@@ -35,5 +35,9 @@ func get_property():
 	return _property
 
 
-func _process(value):
+func _preprocess() -> void:
+	pass
+
+
+func _postprocess(value):
 	return value

@@ -281,13 +281,13 @@ func _validate(parent: JSONProperty, property) -> void:
 	_copy_variables(parent)
 	_init_processors()
 
-	_preprocessor._process(property)
+	_preprocessor._preprocess()
 
 	if not _has_errors():
 		_validate_type(property)
 
 	if not _has_errors():
-		_result = _postprocessor._process(_get_result())
+		_result = _postprocessor._postprocess(_get_result())
 
 
 func _reset() -> void:
