@@ -19,7 +19,7 @@ Finally, on a side note, the process validates the properties of a dictionary in
 
 Now we would explain what you can do when using custom processes:
 - You can access the property to call its methods, using the 'get_property' method.
-- You can raise custom errors and warnings, using the 'add_error' and 'add_warning' metho.
+- You can raise custom errors and warnings, using the 'add_error' and 'add_warning' methods.
 - You can modify the output of a certain property, but only while postprocessing.
 - You can set global variables that can be accessed or modify at any point of the validation process, using the 'set_variable', 'has_variable' and 'get_variable' methods.
 
