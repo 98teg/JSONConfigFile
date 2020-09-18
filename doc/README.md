@@ -18,4 +18,4 @@ JSON Configuration File is a plugin for Godot that aims to aid reading user inpu
     * [**JSONPropertyFile:**](./files/JSON-PROPERTY-FILE.md) Strings representing a path to a file.
     * [**JSONPropertyJSONConfigFile:**](./files/JSON-PROPERTY-JSON-CONFIG-FILE.md) Strings representing a path to a JSON configuration file.
     * [**JSONPropertyImage:**](./files/JSON-PROPERTY-IMAGE.md) Strings representing a path to an image file.
-* [**JSONConfigProcessor:**](./files/JSON-PROPERTY-PROCESSOR.md) The abstract class from which any custom process must extend. The functionality of this class is a bit advanced, but basically, it serves as a way to create functions to process the user input before or after the property tests.
+* [**JSONConfigProcessor:**](./files/JSON-CONFIG-PROCESSOR.md) The abstract class from which any custom process must extend. The functionality of this class is a bit advanced, but basically, it serves as a way to create functions to process the user input before or after the property tests.
