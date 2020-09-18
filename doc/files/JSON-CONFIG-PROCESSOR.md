@@ -43,7 +43,7 @@ To achieve this, we would need three processors in three different scripts. Firs
 extends JSONConfigProcessor
 
 # Overwrite the '_postprocess' method
-func _postprocess(minimum : int):
+func _postprocess(minimum: int):
     # Set a global variable called 'min'
 	set_variable("min", minimum)
 
@@ -57,7 +57,7 @@ The 'set_max' postprocessor:
 extends JSONConfigProcessor
 
 # Overwrite the '_postprocess' method
-func _postprocess(maximum : int):
+func _postprocess(maximum: int):
     # Set a global variable called 'max'
 	set_variable("max", maximum)
 
@@ -126,7 +126,7 @@ enum Genders{
 }
 
 
-func _postprocess(gender : String):
+func _postprocess(gender: String):
 	match gender:
         "MALE":
             return Genders.MALE
@@ -173,13 +173,13 @@ Would generate this dictionary:
 
 ## Example: Primes validation
 
-In this last example, we would raise a custom error. We will check if an integer is a prime. For this purpose, we need to create another postprocessor called 'prime_check':
+In this last example, we would raise a custom error. We will check if an integer is prime. For this purpose, we need to create another postprocessor called 'prime_check':
 
 ```GDScript
 extends JSONConfigProcessor
 
 
-func _postprocess(integer : int):
+func _postprocess(integer: int):
 	# One is not a prime >:(
 	if integer == 1:
 		add_error({"error": "This is not a prime"})
