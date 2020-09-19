@@ -8,7 +8,7 @@ Only allows dictionaries.
 
 ## Usage
 
-First, once you have instantiated the 'JSONPropertyObject' class, you can add new properties by using the 'add_property' method, which requires the property name and a JSONProperty object as its parameters. By default, any new property is obligatory. If you want to make it optional, you must include 'false' as the third parameter. The fourth parameter is the default value that the property would take if the input does not specify this property. Any default value must pass the tests of this property. Otherwise, it would not be accepted.
+First, once you have instantiated the 'JSONPropertyObject' class, you can add new properties by using the 'add_property' method, which requires the property name and a 'JSONProperty' object as its parameters. By default, any new property is obligatory. If you want to make it optional, you must include 'false' as the third parameter. The fourth parameter is the default value that the property would take if the input does not specify this property. Any default value must pass the tests of this property. Otherwise, it would not be accepted.
 
 After adding all the properties, you can create exclusivity and dependency relationships between them. You can not establish these relations with obligatory properties, so every property must be optional.
 
@@ -94,8 +94,8 @@ Returned errors:
     {
         "error": JSONProperty.Errors.WRONG_TYPE,
         "expected": JSONProperty.Types.INTEGER,
-        "context": "person/age",
-        "as_text": "Wrong type: expected 'integer', at 'person/age'."
+        "context": "person.age",
+        "as_text": "Wrong type: expected 'integer', at 'person.age'."
     },
     {
         "error": JSONProperty.Errors.OBJECT_NON_VALID_PROPERTY,

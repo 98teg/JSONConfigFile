@@ -124,8 +124,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.WRONG_TYPE,
         "expected": JSONProperty.Types.NUMBER,
-        "context": "json_file/number",
-        "as_text": "Wrong type: expected 'number', at 'json_file/number'."
+        "context": "json_file.number",
+        "as_text": "Wrong type: expected 'number', at 'json_file.number'."
     }
 ]
 ```

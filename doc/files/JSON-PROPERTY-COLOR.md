@@ -103,8 +103,8 @@ Returned error:
 [
     {
         "error": JSONProperty.Errors.COLOR_WRONG_TYPE,
-        "context": "color/[0]",
-        "as_text": "Wrong type: expected 'integer' in the range [0, 255], at 'color/[0]'."
+        "context": "color[0]",
+        "as_text": "Wrong type: expected 'integer' in the range [0, 255], at 'color[0]'."
     }
 ]
 ```
@@ -126,8 +126,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.COLOR_OUT_OF_RANGE,
         "value": 256,
-        "context": "color/[0]",
-        "as_text": "256 is out of the range [0, 255], at 'color/[0]'."
+        "context": "color[0]",
+        "as_text": "256 is out of the range [0, 255], at 'color[0]'."
     }
 ]
 ```

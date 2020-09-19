@@ -10,7 +10,7 @@ Only allows arrays.
 
 Once you have instantiated the 'JSONPropertyArray' class, you can set restrictions on the size of the array via the 'set_min_size' and 'set_max_size' methods. The values that these functions receive as parameters are inclusive. To remove any restriction, you can use the 'remove_min_size' and 'remove_max_size' methods.
 
-You can also determine what kind of elements can be part of this array via the 'set_element_property' method, which receives a JSONProperty object as a parameter. Otherwise, the array would accept any type of data. You can return to the default behavior using the 'remove_element_property'.
+You can also determine what kind of elements can be part of this array via the 'set_element_property' method, which receives a 'JSONProperty' object as a parameter. Otherwise, the array would accept any type of data. You can return to the default behavior using the 'remove_element_property'.
 
 Finally, you can determine if you want each element of the array to be unique via the 'set_uniqueness' method and passing 'true' as its first parameter. When the array contains dictionaries, it would only check if the 'unique_key', the second parameter of this method, values of the dictionaries are equal. By default, the 'unique_key' string is empty. In this case, it would compare all the fields of the dictionaries.
 
@@ -189,8 +189,8 @@ Returned error:
     {
         "error": JSONProperty.Errors.WRONG_TYPE,
         "expected": JSONProperty.Types.OBJECT,
-        "context": "furniture/[2]",
-        "as_text": "Wrong type: expected 'object', at 'furniture/[2]'."
+        "context": "furniture[2]",
+        "as_text": "Wrong type: expected 'object', at 'furniture[2]'."
     }
 ]
 ```
