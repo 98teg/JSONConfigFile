@@ -128,11 +128,13 @@ const MESSAGE_WITHOUT_CONTEXT = "."
 static func _array_as_text(array: Array) -> String:
 	var array_as_text = ""
 
-	for i in array.size():
+	for i in range(array.size()):
 		if i == 0:
-			array_as_text = String(array[0])
+			array_as_text = "['" + String(array[0]) + "'"
+		elif i == array.size() - 1:
+			array_as_text = array_as_text + ", '" + String(array[i]) + "']"
 		else:
-			array_as_text = array_as_text + ", " + String(array[i])
+			array_as_text = array_as_text + ", '" + String(array[i]) + "'"
 
 	return array_as_text
 

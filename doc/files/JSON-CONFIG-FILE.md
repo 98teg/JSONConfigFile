@@ -142,7 +142,7 @@ Returned error:
     {
         "error": JSONProperty.Errors.OBJECT_ONE_IS_REQUIRED,
         "properties": ["student", "employee"],
-        "as_text": "One of this properties needs to be specified: student, employee."
+        "as_text": "One of this properties needs to be specified: ['student', 'employee']."
     }
 ]
 ```
@@ -167,7 +167,7 @@ Returned error:
     {
         "error": JSONProperty.Errors.OBJECT_EXCLUSIVITY_ERROR,
         "properties": ["student", "employee"],
-        "as_text": "This properties can not be present at the same time: student, employee."
+        "as_text": "This properties can not be present at the same time: ['student', 'employee']."
     }
 ]
 ```
