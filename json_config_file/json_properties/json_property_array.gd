@@ -63,18 +63,12 @@ func _validate_type(array) -> void:
 				var index = "[" + String(i) + "]"
 
 				for error in _element_property._get_errors():
-					if error.has("context"):
-						error.context = index + "/" + error.context
-					else:
-						error.context = index
+					_update_context(error, index)
 
 					_errors.append(error)
 
 				for warning in _element_property._get_warnings():
-					if warning.has("context"):
-						warning.context = index + "/" + warning.context
-					else:
-						warning.context = index
+					_update_context(warning, index)
 
 					_warnings.append(warning)
 

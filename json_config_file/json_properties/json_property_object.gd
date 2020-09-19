@@ -80,18 +80,12 @@ func _validate_type(object) -> void:
 				_result[property_name] = property._get_result()
 
 				for error in property._get_errors():
-					if error.has("context"):
-						error.context = property_name + "/" + error.context
-					else:
-						error.context = property_name
+					_update_context(error, property_name)
 
 					_errors.append(error)
 
 				for warning in property._get_warnings():
-					if warning.has("context"):
-						warning.context = property_name + "/" + warning.context
-					else:
-						warning.context = property_name
+					_update_context(warning, property_name)
 
 					_warnings.append(warning)
 
