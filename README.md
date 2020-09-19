@@ -38,4 +38,4 @@ This plugin would offer you:
 
 ## Contributing
 
-If you want to contribute with a new kind of property or a new feature, please consider also contributing to the [documentation](./doc/README.md) and adding new tests to the [repository of tests](https://github.com/98teg/JSONConfigFileTests) for this plugin.
+If you want to contribute with a new kind of property or a new feature, please consider also contributing to the [documentation](./doc/README.md) or adding new tests to the [repository of tests](https://github.com/98teg/JSONConfigFileTests) for this plugin.
