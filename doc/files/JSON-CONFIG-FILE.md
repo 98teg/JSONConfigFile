@@ -78,12 +78,12 @@ Returned errors:
     {
         "error": JSONProperty.Errors.OBJECT_NON_VALID_PROPERTY,
         "property": "unrequired_property",
-        "as_text": "The property 'unrequired_property' is not a valid one."
+        "as_text": "Unkown property: 'unrequired_property', this property is not required."
     },
     {
         "error": JSONProperty.Errors.OBJECT_MISSING_PROPERTY,
         "property": "name",
-        "as_text": "The property 'name' has not been specified."
+        "as_text": "The required property 'name' is missing."
     }
 ]
 ```

@@ -101,13 +101,13 @@ Returned errors:
         "error": JSONProperty.Errors.OBJECT_NON_VALID_PROPERTY,
         "property": "unrequired_property",
         "context": "person",
-        "as_text": "The property 'unrequired_property' is not a valid one, at 'person'."
+        "as_text": "Unkown property: 'unrequired_property', this property is not required, at 'person'."
     },
     {
         "error": JSONProperty.Errors.OBJECT_MISSING_PROPERTY,
         "property": "name",
         "context": "person",
-        "as_text": "The property 'name' has not been specified, at 'person'."
+        "as_text": "The required property 'name' is missing, at 'person'."
     }
 ]
 ```
