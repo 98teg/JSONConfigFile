@@ -8,7 +8,7 @@ Only allows strings from an array of possible values.
 
 ## Usage
 
-Once you have instantiated the class, you must provide an array with the possible values via the 'set_enum' method. Otherwise, it would not allow anything at all.
+Once you have instantiated the 'JSONPropertyEnum' class, you must provide an array with the possible values via the 'set_enum' method. Otherwise, it would not allow anything at all.
 
 ## Example
 

@@ -8,7 +8,7 @@ Only allows strings representing a path to a file. This path can be absolute or 
 
 ## Usage
 
-Once you have instantiated the class, you can determine how to open the file via the 'set_mode_flag' method. It would be [File.READ](https://docs.godotengine.org/en/stable/classes/class_file.html?highlight=File.READ#enumerations) by default.
+Once you have instantiated the 'JSONPropertyFile' class, you can determine how to open the file via the 'set_mode_flag' method. It would be [File.READ](https://docs.godotengine.org/en/stable/classes/class_file.html?highlight=File.READ#enumerations) by default.
 
 ## Example
 

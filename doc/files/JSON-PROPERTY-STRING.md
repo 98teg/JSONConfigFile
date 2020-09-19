@@ -8,7 +8,7 @@ Only allows strings.
 
 ## Usage
 
-Once you have instantiated the class, you can set the boundaries of the possible length of the strings via the 'set_min_length' and 'set_max_length' methods. The values that these functions receive as parameters are inclusive. To remove any boundary you can use the 'remove_min_length' and 'remove_max_length' methods.
+Once you have instantiated the 'JSONPropertyString' class, you can set the boundaries of the possible length of the strings via the 'set_min_length' and 'set_max_length' methods. The values that these functions receive as parameters are inclusive. To remove any boundary you can use the 'remove_min_length' and 'remove_max_length' methods.
 
 This class also allows you to specify if the string must satisfy a pattern. Use the 'set_pattern' method to create this pattern. The pattern is a string that represents a regular expression. You must consider that the regular expression can be in any part of the string to be valid, so you might want to include ^ and $ to delimit the regular expression. To remove any pattern use the 'remove_pattern' method.
 

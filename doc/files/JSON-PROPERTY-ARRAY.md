@@ -1,4 +1,4 @@
-# JSON Property Array
+# JSONPropertyArray
 
 **extends [JSONProperty](./JSON-PROPERTY.md)**
 
@@ -8,7 +8,7 @@ Only allows arrays.
 
 ## Usage
 
-Once you have instantiated the class, you can set restrictions on the size of the array via the 'set_min_size' and 'set_max_size' methods. The values that these functions receive as parameters are inclusive. To remove any restriction, you can use the 'remove_min_size' and 'remove_max_size' methods.
+Once you have instantiated the 'JSONPropertyArray' class, you can set restrictions on the size of the array via the 'set_min_size' and 'set_max_size' methods. The values that these functions receive as parameters are inclusive. To remove any restriction, you can use the 'remove_min_size' and 'remove_max_size' methods.
 
 You can also determine what kind of elements can be part of this array via the 'set_element_property' method, which receives a JSONProperty object as a parameter. Otherwise, the array would accept any type of data. You can return to the default behavior using the 'remove_element_property'.
 

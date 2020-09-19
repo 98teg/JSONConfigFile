@@ -1,4 +1,4 @@
-# JSONConfigProcessors
+# JSONConfigProcessor
 
 Is an abstract class from which any custom process must extend. The functionality of this class is a bit advanced, but basically, it serves as a way to create functions to process the user input before or after the property tests.
 

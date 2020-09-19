@@ -8,7 +8,7 @@ Only allows strings representing a path to an image. This path can be absolute o
 
 ## Usage
 
-Once you have instantiated the class, you can determine the size of the image via the 'set_size' method. By default, the images would be resizable and rescaled using [Image.INTERPOLATE_BILINEAR](https://docs.godotengine.org/en/stable/classes/class_image.html?highlight=Image#enum-image-interpolation). That means that when the image size is different, this property will raise a warning. If you want it to raise an error, set the third parameter in 'set_size' to 'false'.
+Once you have instantiated the 'JSONPropertyImage' class, you can determine the size of the image via the 'set_size' method. By default, the images would be resizable and rescaled using [Image.INTERPOLATE_BILINEAR](https://docs.godotengine.org/en/stable/classes/class_image.html?highlight=Image#enum-image-interpolation). That means that when the image size is different, this property will raise a warning. If you want it to raise an error, set the third parameter in 'set_size' to 'false'.
 
 ## Example
 

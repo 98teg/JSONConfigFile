@@ -8,7 +8,7 @@ Only allows integers.
 
 ## Usage
 
-Once you have instantiated the class, you can set the boundaries of the possible values via the 'set_min_value' and 'set_max_value' methods. The values that these functions receive as parameters are inclusive. To remove any boundary you can use the 'remove_min_value' and 'remove_max_value' methods.
+Once you have instantiated the 'JSONPropertyInteger' class, you can set the boundaries of the possible values via the 'set_min_value' and 'set_max_value' methods. The values that these functions receive as parameters are inclusive. To remove any boundary you can use the 'remove_min_value' and 'remove_max_value' methods.
 
 ## Example
 

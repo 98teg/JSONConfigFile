@@ -1,4 +1,4 @@
-# JSONPropertyJSONConfigurationFile
+# JSONPropertyJSONConfigFile
 
 **extends [JSONProperty](./JSON-PROPERTY.md)**
 
@@ -8,7 +8,7 @@ Only allows strings representing a path to a JSON configuration file. This path 
 
 ## Usage
 
-Once you have instantiated the class, you must determine which JSONConfigFile this property would use via the 'set_json_config_file' method.
+Once you have instantiated the 'JSONPropertyJSONConfigFile' class, you must determine which JSONConfigFile this property would use via the 'set_json_config_file' method.
 
 ## Example
 
