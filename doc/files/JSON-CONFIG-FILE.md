@@ -4,7 +4,7 @@ The main class of this plugin. This class would read the user input file, detect
 
 ## Usage
 
-First, once you have instantiated the 'JSONConfigFile' class, you can add new properties by using the 'add_property' method, which requires the property name and a JSONProperty object as its parameters. By default, any new property is obligatory. If you want to make it optional, you must include 'false' as the third parameter. The fourth parameter is the default value that the property would take if the input does not specify this property. Any default value must pass the tests of this property. Otherwise, it would not be accepted.
+First, once you have instantiated the 'JSONConfigFile' class, you can add new properties by using the 'add_property' method, which requires the property name and a 'JSONProperty' object as its parameters. By default, any new property is obligatory. If you want to make it optional, you must include 'false' as the third parameter. The fourth parameter is the default value that the property would take if the input does not specify this property. Any default value must pass the tests of this property. Otherwise, it would not be accepted.
 
 After adding all the properties, you can create exclusivity and dependency relationships between them. You can not establish these relations with obligatory properties, so every property must be optional.
 
@@ -21,6 +21,8 @@ It is important to note that the validation process represents any error or warn
 - **The params keys:** The number and the names of the params for each error/warning vary. These params contain additional information about the error/warning. In the Error or Warning section of each class of this documentation, you can consult the different params these dictionaries have.
 
 - **The 'context' key:** The name of the field that contains this error/warning.
+
+- **The 'as_text' key:** The default error message, usefull if you do not want to implement your own error messages.
 
 In other words, the errors/warnings are dictionaries that allow the creation of custom error messages, as this plugin aims to provide information to a user of the final application. Finally, the method 'get_result' returns the resultant dictionary from reading the file. 
 
