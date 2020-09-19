@@ -266,7 +266,7 @@ This JSON has specified only the dependent property in its 'person' property.
 }
 ```
 
-If you want to make both properties mutually dependent, you must add another dependency:
+**Tip:** If you want to make both properties mutually dependent, you must add another dependency:
 
 ```GDScript
 # Create a JSON configuration file
