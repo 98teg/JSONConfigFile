@@ -336,7 +336,7 @@ func _get_file_path(file: String) -> String:
 
 func _update_context(error_or_warning: Dictionary, context) -> void:
 	var _index_regex = RegEx.new()
-	_index_regex.compile("^\\[([0-9]|[1-9]+[0-9]+)\\]$")
+	_index_regex.compile("^\\[([0-9]|[1-9]+[0-9]+)\\]")
 
 	if error_or_warning.has("context"):
 		if _index_regex.search(error_or_warning.context) == null:
