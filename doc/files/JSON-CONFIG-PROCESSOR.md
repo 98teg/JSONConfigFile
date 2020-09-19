@@ -45,10 +45,10 @@ extends JSONConfigProcessor
 # Overwrite the '_postprocess' method
 func _postprocess(minimum: int):
     # Set a global variable called 'min'
-	set_variable("min", minimum)
+    set_variable("min", minimum)
 
     # It is a postprocessor, so it must return a value
-	return minimum
+    return minimum
 ```
 
 The 'set_max' postprocessor:
@@ -59,10 +59,10 @@ extends JSONConfigProcessor
 # Overwrite the '_postprocess' method
 func _postprocess(maximum: int):
     # Set a global variable called 'max'
-	set_variable("max", maximum)
+    set_variable("max", maximum)
 
     # It is a postprocessor, so it must return a value
-	return maximum
+    return maximum
 ```
 
 The 'set_range' preprocessor. It is crucial to notice that we need to check if the variables exists. Just in case the input data is non-valid, and the variables are not declared:
@@ -73,13 +73,13 @@ extends JSONConfigProcessor
 # Overwrite the '_preprocess' method
 func _preprocess():
     # Check if the global variable min exists
-	if has_variable("min"):
+    if has_variable("min"):
         # Set the integer minimum value
-		get_property().set_min_value(get_variable("min"))
+        get_property().set_min_value(get_variable("min"))
     # Check if the global variable max exists
-	if has_variable("max"):
+    if has_variable("max"):
         # Set the integer maximum value
-		get_property().set_max_value(get_variable("max"))
+        get_property().set_max_value(get_variable("max"))
 
     # It is a preprocessor, so it does not return a value
 ```
@@ -120,14 +120,14 @@ extends JSONConfigProcessor
 
 
 enum Genders{
-	MALE,
-	FEMALE,
-	NON_BINARY
+    MALE,
+    FEMALE,
+    NON_BINARY
 }
 
 
 func _postprocess(gender: String):
-	match gender:
+    match gender:
         "MALE":
             return Genders.MALE
         "FEMALE":
@@ -135,7 +135,7 @@ func _postprocess(gender: String):
         "NON_BINARY":
             return Genders.NON_BINARY
 
-	return -1
+    return -1
 ```
 
 Then we can create the following JSON configuration file:
@@ -180,19 +180,19 @@ extends JSONConfigProcessor
 
 
 func _postprocess(integer: int):
-	# One is not a prime >:(
-	if integer == 1:
-		add_error({"error": "This is not a prime"})
-		return null
+    # One is not a prime >:(
+    if integer == 1:
+        add_error({"error": "This is not a prime"})
+        return null
 
-	# A simple prime check
-	for i in range(2, sqrt(integer) + 1):
-		# If is not prime
-		if integer % i == 0:
-			add_error({"error": "This is not a prime"})
-			return null
+    # A simple prime check
+    for i in range(2, sqrt(integer) + 1):
+        # If is not prime
+        if integer % i == 0:
+            add_error({"error": "This is not a prime"})
+            return null
 
-	return integer
+    return integer
 ```
 
 Now we can create the following JSON configuration file:
@@ -238,3 +238,15 @@ Returned error:
     }
 ]
 ```
+## Functions
+
+The public methods of this class are:
+
+| Name | Params | Description | Returns |
+|-|-|-|-|
+| **add_error** | **error -> Dictionary:** <br> Custom error. | Raises a custom error, if you want it to have the 'as_text' property, include your custom error message in an 'error' property. | Nothing. |
+| **add_warning** | **warning -> Dictionary:** <br> Custom warning. | Raises a custom warning, if you want it to have the 'as_text' property, include your custom warning message in an 'warning' property. | Nothing. |
+| **set_variable** | **name -> String:** <br> Name of the global variable to set. <br> **value -> Variant:** <br> The value assigned to this global variable. | Creates a global variable or modify the value of a previously existing one. | Nothing. |
+| **has_variable** | **name -> String:** <br> Name of the global variable to check. | Checks if the global variable exists. | **bool:** <br> If the global variable exists. |
+| **get_variable** | **name -> String:** <br> Name of the global variable to get. | Gets the value of the specified global variable. | **Variant:** <br> The value of the global variable. If the variable is undefined, it will return null. |
+| **get_property** | None. | Returns the JSON property in which this processor is located. | **JSONProperty:** <br> The JSON property in which this processor is located.
