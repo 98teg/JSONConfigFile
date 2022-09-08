@@ -123,7 +123,7 @@ func _are_equal_arrays(array_1 : Array, array_2 : Array) -> bool:
 	for i in array_1.size():
 		if not _are_equal(array_1[i], array_2[i]):
 			return false
-	
+
 	return true
 
 
@@ -146,7 +146,7 @@ func _are_equal_dictionaries(dic_1 : Dictionary, dic_2 : Dictionary) -> bool:
 				return false
 		else:
 			return false
-	
+
 	return true
 
 func _can_apply_unique_key(dic_1 : Dictionary, dic_2 : Dictionary) -> bool:

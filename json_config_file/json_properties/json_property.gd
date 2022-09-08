@@ -1,9 +1,6 @@
 class_name JSONProperty
 
 
-const PRECISION_ERROR = 0.000001
-
-
 enum Types {
 	BOOL,
 	NUMBER,
@@ -18,50 +15,6 @@ enum Types {
 	JSON_CONFIG_FILE,
 	IMAGE,
 }
-
-
-const MESSAGE_BOOL = "boolean"
-const MESSAGE_NUMBER = "number"
-const MESSAGE_INTEGER = "integer"
-const MESSAGE_PERCENTAGE = "percentage"
-const MESSAGE_STRING = "string"
-const MESSAGE_ENUM = "string"
-const MESSAGE_ARRAY = "array"
-const MESSAGE_COLOR = "color"
-const MESSAGE_OBJECT = "object"
-const MESSAGE_FILE = "file path"
-const MESSAGE_JSON_CONFIG_FILE = "JSON configuration file path"
-const MESSAGE_IMAGE = "image path"
-
-
-static func _type_as_text(type: int) -> String:
-	match type:
-		Types.BOOL:
-			return MESSAGE_BOOL
-		Types.NUMBER:
-			return MESSAGE_NUMBER
-		Types.INTEGER:
-			return MESSAGE_INTEGER
-		Types.PERCENTAGE:
-			return MESSAGE_PERCENTAGE
-		Types.STRING:
-			return MESSAGE_STRING
-		Types.ENUM:
-			return MESSAGE_ENUM
-		Types.ARRAY:
-			return MESSAGE_ARRAY
-		Types.COLOR:
-			return MESSAGE_COLOR
-		Types.OBJECT:
-			return MESSAGE_OBJECT
-		Types.FILE:
-			return MESSAGE_FILE
-		Types.JSON_CONFIG_FILE:
-			return MESSAGE_JSON_CONFIG_FILE
-		Types.IMAGE:
-			return MESSAGE_IMAGE
-		_:
-			return "This type message is not defined"
 
 enum Errors {
 	COULD_NOT_OPEN_FILE,
@@ -91,6 +44,25 @@ enum Errors {
 	IMAGE_WRONG_SIZE,
 }
 
+enum Warnings {
+	IMAGE_WRONG_SIZE,
+}
+
+
+const PRECISION_ERROR = 0.000001
+
+const MESSAGE_BOOL = "boolean"
+const MESSAGE_NUMBER = "number"
+const MESSAGE_INTEGER = "integer"
+const MESSAGE_PERCENTAGE = "percentage"
+const MESSAGE_STRING = "string"
+const MESSAGE_ENUM = "string"
+const MESSAGE_ARRAY = "array"
+const MESSAGE_COLOR = "color"
+const MESSAGE_OBJECT = "object"
+const MESSAGE_FILE = "file path"
+const MESSAGE_JSON_CONFIG_FILE = "JSON configuration file path"
+const MESSAGE_IMAGE = "image path"
 
 const MESSAGE_COULD_NOT_OPEN_FILE = "Could not open the file"
 const MESSAGE_COULD_NOT_OPEN_IMAGE = "Could not open the image"
@@ -123,6 +95,45 @@ const MESSAGE_IMAGE_WRONG_SIZE = "The image is not the correct size (%d, %d)"
 
 const MESSAGE_WITH_CONTEXT = ", at '%s'."
 const MESSAGE_WITHOUT_CONTEXT = "."
+
+
+var _result
+var _errors := []
+var _warnings := []
+var _public_variables := {}
+var _private_variables := {}
+var _preprocessor := JSONConfigProcessor.new()
+var _postprocessor := JSONConfigProcessor.new()
+
+
+static func _type_as_text(type: int) -> String:
+	match type:
+		Types.BOOL:
+			return MESSAGE_BOOL
+		Types.NUMBER:
+			return MESSAGE_NUMBER
+		Types.INTEGER:
+			return MESSAGE_INTEGER
+		Types.PERCENTAGE:
+			return MESSAGE_PERCENTAGE
+		Types.STRING:
+			return MESSAGE_STRING
+		Types.ENUM:
+			return MESSAGE_ENUM
+		Types.ARRAY:
+			return MESSAGE_ARRAY
+		Types.COLOR:
+			return MESSAGE_COLOR
+		Types.OBJECT:
+			return MESSAGE_OBJECT
+		Types.FILE:
+			return MESSAGE_FILE
+		Types.JSON_CONFIG_FILE:
+			return MESSAGE_JSON_CONFIG_FILE
+		Types.IMAGE:
+			return MESSAGE_IMAGE
+		_:
+			return "This type message is not defined"
 
 
 static func _array_as_text(array: Array) -> String:
@@ -216,11 +227,6 @@ static func _error_as_text(error: Dictionary) -> String:
 	return error_as_text
 
 
-enum Warnings {
-	IMAGE_WRONG_SIZE,
-}
-
-
 static func _warning_as_text(warning: Dictionary) -> String:
 	var warning_as_text
 
@@ -239,15 +245,6 @@ static func _warning_as_text(warning: Dictionary) -> String:
 		warning_as_text = warning_as_text + MESSAGE_WITHOUT_CONTEXT
 
 	return warning_as_text
-
-
-var _result
-var _errors := []
-var _warnings := []
-var _public_variables := {}
-var _private_variables := {}
-var _preprocessor := JSONConfigProcessor.new()
-var _postprocessor := JSONConfigProcessor.new()
 
 
 func set_preprocessor(processor: JSONConfigProcessor) -> void:
@@ -337,11 +334,11 @@ func _get_file_path(file: String) -> String:
 
 
 func _update_context(error_or_warning: Dictionary, context) -> void:
-	var _index_regex = RegEx.new()
-	_index_regex.compile("^\\[([0-9]|[1-9]+[0-9]+)\\]")
+	var index_regex = RegEx.new()
+	index_regex.compile("^\\[([0-9]|[1-9]+[0-9]+)\\]")
 
 	if error_or_warning.has("context"):
-		if _index_regex.search(error_or_warning.context) == null:
+		if index_regex.search(error_or_warning.context) == null:
 			error_or_warning.context = context + "." + error_or_warning.context
 		else:
 			error_or_warning.context = context + error_or_warning.context

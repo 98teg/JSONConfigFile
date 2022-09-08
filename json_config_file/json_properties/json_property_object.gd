@@ -16,10 +16,10 @@ func add_property(name: String, property: JSONProperty,
 	if property != null:
 		_properties[name] = property
 		_properties_in_order.append(name)
-	
+
 		if required:
 			_required_properties.append(name)
-	
+
 		if default_value != null:
 			property._reset()
 			property._validate(self, default_value)

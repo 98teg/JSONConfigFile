@@ -51,7 +51,7 @@ func _validate_type(color) -> void:
 							result.b8 = value
 						3:
 							result.a8 = value
-			
+
 			if correct_color:
 				_result = result
 	else:
