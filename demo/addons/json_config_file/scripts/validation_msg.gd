@@ -34,8 +34,7 @@ static func new_warning(code: StringName, message: String, info: Dictionary) -> 
 func as_text() -> String:
 	if context_levels.is_empty():
 		return message + "."
-	else:
-		return message + ", at '" + _context_as_text() + "'."
+	return message + ", at '" + _context_as_text() + "'."
 
 
 func _context_as_text() -> String:
@@ -65,14 +64,11 @@ func _to_string() -> String:
 
 
 static func _wrong_type_error(type: String) -> ValidationMsg:
-	return (
-		ValidationMsg
-		. new(
-			Importance.ERROR,
-			"wrong_type",
-			"Wrong type: expected '%s'" % type,
-			{"type": type},
-		)
+	return ValidationMsg.new(
+		Importance.ERROR,
+		"wrong_type",
+		"Wrong type: expected '%s'" % type,
+		{"type": type},
 	)
 
 

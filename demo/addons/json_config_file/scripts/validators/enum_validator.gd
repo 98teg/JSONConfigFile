@@ -30,11 +30,8 @@ func _parse(value: Variant) -> int:
 
 
 static func _not_valid_value(value: String) -> _ValidationMsg:
-	return (
-		_ValidationMsg
-		. new_error(
-			_type_name + ":not_valid_value",
-			"'%s' is not a valid value" % [value],
-			{"value": value},
-		)
+	return _ValidationMsg.new_error(
+		_type_name + ":not_valid_value",
+		"'%s' is not a valid value" % [value],
+		{"value": value},
 	)

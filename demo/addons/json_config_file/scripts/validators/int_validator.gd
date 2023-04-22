@@ -47,22 +47,16 @@ func _parse(value: Variant) -> int:
 
 
 static func _less_than_min_error(value: int, min: int) -> _ValidationMsg:
-	return (
-		_ValidationMsg
-		. new_error(
-			_type_name + ":less_than_min",
-			"%d is less than the minimum allowed (%d)" % [value, min],
-			{"value": value, "min": min},
-		)
+	return _ValidationMsg.new_error(
+		_type_name + ":less_than_min",
+		"%d is less than the minimum allowed (%d)" % [value, min],
+		{"value": value, "min": min},
 	)
 
 
 static func _more_than_max_error(value: int, max: int) -> _ValidationMsg:
-	return (
-		_ValidationMsg
-		. new_error(
-			_type_name + ":more_than_max",
-			"%d is more than the maximum allowed (%d)" % [value, max],
-			{"value": value, "max": max},
-		)
+	return _ValidationMsg.new_error(
+		_type_name + ":more_than_max",
+		"%d is more than the maximum allowed (%d)" % [value, max],
+		{"value": value, "max": max},
 	)

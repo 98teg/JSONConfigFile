@@ -52,13 +52,11 @@ func test_schema():
 
 	person_schema.add_int("age")
 
-	(
-		person_schema
-		. add_enum("gender")
-		. add_value("MALE", Gender.MALE)
-		. add_value("FEMALE", Gender.FEMALE)
-		. add_value("NON_BINARY", Gender.NON_BINARY)
-	)
+	person_schema\
+		.add_enum("gender")\
+		.add_value("MALE", Gender.MALE)\
+		.add_value("FEMALE", Gender.FEMALE)\
+		.add_value("NON_BINARY", Gender.NON_BINARY)
 
 	person_schema.add_string("telephone_number").set_pattern("^( |[0-9])+$")
 

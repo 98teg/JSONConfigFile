@@ -57,33 +57,24 @@ func _parse(value: Variant) -> String:
 
 
 static func _shorter_than_min_error(value: String, min_length: int) -> _ValidationMsg:
-	return (
-		_ValidationMsg
-		. new_error(
-			_type_name + ":shorter_than_min",
-			"'%s's length is shorter than the minimum length allowed (%d)" % [value, min_length],
-			{"value": value, "min_length": min_length},
-		)
+	return _ValidationMsg.new_error(
+		_type_name + ":shorter_than_min",
+		"'%s's length is shorter than the minimum length allowed (%d)" % [value, min_length],
+		{"value": value, "min_length": min_length},
 	)
 
 
 static func _longer_than_max_error(value: String, max_length: int) -> _ValidationMsg:
-	return (
-		_ValidationMsg
-		. new_error(
-			_type_name + ":longer_than_max",
-			"'%s's length is longer than the maximum length allowed (%d)" % [value, max_length],
-			{"value": value, "max_length": max_length},
-		)
+	return _ValidationMsg.new_error(
+		_type_name + ":longer_than_max",
+		"'%s's length is longer than the maximum length allowed (%d)" % [value, max_length],
+		{"value": value, "max_length": max_length},
 	)
 
 
 static func _unmatched_pattern_error(value: String, pattern: String) -> _ValidationMsg:
-	return (
-		_ValidationMsg
-		. new_error(
-			_type_name + ":unmatched_pattern",
-			"'%s' does not match the specified pattern: /%s/" % [value, pattern],
-			{"value": value, "pattern": pattern},
-		)
+	return _ValidationMsg.new_error(
+		_type_name + ":unmatched_pattern",
+		"'%s' does not match the specified pattern: /%s/" % [value, pattern],
+		{"value": value, "pattern": pattern},
 	)

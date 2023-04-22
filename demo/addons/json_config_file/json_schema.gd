@@ -111,11 +111,9 @@ func _add_property(name: StringName, property_script: Script) -> Object:
 
 func add_exclusivity(property_names: Array[StringName], one_is_required := false) -> void:
 	assert(property_names.all(func(name: StringName) -> bool: return _property_exists(name)))
-	assert(
-		property_names.all(
-			func(name: StringName) -> bool: return _get_property_by_name(name)._required == false
-		)
-	)
+	assert(property_names.all(
+		func(name: StringName) -> bool: return _get_property_by_name(name)._required == false
+	))
 
 	_exclusivity_relations.append(_ExclusivityRelation.new(property_names, one_is_required))
 
@@ -220,49 +218,38 @@ func _parse(value: Variant, json_config_file_path := "") -> Dictionary:
 
 
 static func _not_allowed_property_error(property: StringName) -> _ValidationMsg:
-	return (
-		_ValidationMsg
-		. new_error(
-			_type_name + ":not_allowed_property",
-			"Unkown property: '%s', this property is not allowed" % property,
-			{"property": property},
-		)
+	return _ValidationMsg.new_error(
+		_type_name + ":not_allowed_property",
+		"Unkown property: '%s', this property is not allowed" % property,
+		{"property": property},
 	)
 
 
 static func _required_property_error(property: StringName) -> _ValidationMsg:
-	return (
-		_ValidationMsg
-		. new_error(
-			_type_name + ":required_property",
-			"Missing property: '%s', this property is required" % property,
-			{"property": property},
-		)
+	return _ValidationMsg.new_error(
+		_type_name + ":required_property",
+		"Missing property: '%s', this property is required" % property,
+		{"property": property},
 	)
 
 
 static func _required_dependent_property_error(
 	main_property: StringName, dependent_property: StringName
 ) -> _ValidationMsg:
-	return (
-		_ValidationMsg
-		. new_error(
-			_type_name + ":required_dependent_property",
-			(
-				"Missing property: '%s', this property is required if '%s' has been specified"
-				% [dependent_property, main_property]
-			),
-			{"main_property": main_property, "dependent_property": dependent_property},
-		)
+	return _ValidationMsg.new_error(
+		_type_name + ":required_dependent_property",
+		"Missing property: '%s', this property is required if '%s' has been specified" % [
+			dependent_property, main_property
+		],
+		{"main_property": main_property, "dependent_property": dependent_property},
 	)
 
 
 static func _one_property_is_required_error(properties: Array[StringName]) -> _ValidationMsg:
 	return _ValidationMsg.new_error(
 		_type_name + ":one_property_is_required",
-		(
-			"One of this properties needs to be specified: %s"
-			% _ValidationMsg._array_as_text(properties)
+		"One of this properties needs to be specified: %s" % _ValidationMsg._array_as_text(
+			properties
 		),
 		{"properties": properties}
 	)
@@ -271,9 +258,8 @@ static func _one_property_is_required_error(properties: Array[StringName]) -> _V
 static func _exclusive_properties_error(properties: Array[StringName]) -> _ValidationMsg:
 	return _ValidationMsg.new_error(
 		_type_name + ":exclusive_properties",
-		(
-			"This properties can not be defined at the same time: %s"
-			% _ValidationMsg._array_as_text(properties)
+		"This properties can not be defined at the same time: %s" % _ValidationMsg._array_as_text(
+			properties
 		),
 		{"properties": properties}
 	)

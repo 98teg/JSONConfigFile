@@ -1,0 +1,3 @@
+[codespell]
+skip = demo/addons/gut
+builtin = en-GB_to_en-US

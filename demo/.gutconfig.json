@@ -1,0 +1,12 @@
+{
+    "dirs": [
+        "res://tests/"
+    ],
+    "include_subdirs": true,
+    "selected": "",
+    "should_exit": true,
+    "should_maximize": false,
+    "tests": [],
+    "unit_test_name": "",
+    "disabled_colors": true
+}

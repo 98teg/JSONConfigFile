@@ -4,12 +4,13 @@ Is an abstract class from which any custom process must extend. The functionalit
 
 ## Usage
 
-This plugin uses processors as a way to allow the user to execute any custom code during the JSON validation process, in case the functionality provided by this framework is not enough. This page would explain how to use them. But first, let's discuss some behaviour of the validation process.
+This plugin uses processors as a way to allow the user to execute any custom code during the JSON validation process, in case the functionality provided by this framework is not enough. This page would explain how to use them. But first, let's discuss some behavior of the validation process.
 
 Each property execute the validation process in three phases:
-1. **Preprocess:** The user determines this phase behaviour. However, it can not modify the input data.
+
+1. **Preprocess:** The user determines this phase behavior. However, it can not modify the input data.
 2. **Type validation:** This phase executes all the validation tests that we have been discussing in other parts of this documentation.
-3. **Postprocess:** The user determines this phase behaviour. This phase can modify the input data.
+3. **Postprocess:** The user determines this phase behavior. This phase can modify the input data.
 
 Whenever an error arises in any of these phases, the process would not execute the following ones. On the other hand, raising warnings would not stop the validation process.
 
@@ -18,6 +19,7 @@ Also, when the process validates a dictionary or [JSONPropertyObject](./JSON-PRO
 Finally, on a side note, the process validates the properties of a dictionary in the order they were defined. This fact becomes significant when the custom processes writte and read global variables.
 
 Now we would explain what you can do when using custom processes:
+
 - You can access the property to call its methods, using the 'get_property' method.
 - You can raise custom errors and warnings, using the 'add_error' and 'add_warning' methods.
 - You can modify the output of a certain property, but only while postprocessing.
@@ -113,6 +115,7 @@ json_config_file.validate(json_file_path)
 ```
 
 ## Example: Transforming an enum into an integer
+
 In this case, we want the user to introduce an enum. This field would be a string on the final dictionary, but we can transform this field to be an integer that represents a value of a Godot's enum. For this purpose, we must define a postprocessor called 'transform_gender_enum' that looks like this:
 
 ```GDScript
@@ -206,7 +209,7 @@ prime.set_postprocessor(preload("res://prime_check.gd").new())
 var json_config_file = JSONConfigFile.new()
 # Add the 'prime' property
 json_config_file.add_property("prime", prime)
-	
+ 
 # Validate input
 json_config_file.validate(json_file_path)
 ```
@@ -238,6 +241,7 @@ Returned error:
     }
 ]
 ```
+
 ## Functions
 
 The public methods of this class are:

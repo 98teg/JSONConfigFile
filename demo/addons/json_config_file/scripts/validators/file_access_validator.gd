@@ -126,15 +126,12 @@ func _valid_mode_flags(mode_flags: int) -> bool:
 
 
 func _valid_compression_mode(compression_mode: int) -> bool:
-	return (
-		[
-			FileAccess.COMPRESSION_FASTLZ,
-			FileAccess.COMPRESSION_DEFLATE,
-			FileAccess.COMPRESSION_ZSTD,
-			FileAccess.COMPRESSION_GZIP
-		]
-		. has(compression_mode)
-	)
+	return [
+		FileAccess.COMPRESSION_FASTLZ,
+		FileAccess.COMPRESSION_DEFLATE,
+		FileAccess.COMPRESSION_ZSTD,
+		FileAccess.COMPRESSION_GZIP
+	].has(compression_mode)
 
 
 func _validate(value: Variant, json_config_file_path: String) -> Array[_ValidationMsg]:

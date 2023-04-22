@@ -1,0 +1,60 @@
+name: 🌟 Master
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  gdscript:
+    name: 💅 Linting / 🤖 GDScript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: pip3 install "gdtoolkit==4.*"
+      - run: bash -c 'for f in ./demo/addons/json_config_file/**/*.gd; do gdlint "$f"; done'
+      - run: bash -c 'for f in ./demo/tests/**/*.gd; do gdlint "$f"; done'
+
+  spelling:
+    name: 💅 Linting / 👓 Spelling
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: codespell-project/actions-codespell@v1
+  
+  unit-testing:
+    name: 🧪 Unit Testing
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Download Godot
+      run: |
+        curl -O https://downloads.tuxfamily.org/godotengine/4.0.3/Godot_v4.0.3-stable_linux.x86_64.zip
+        unzip Godot_v4.0.3-stable_linux.x86_64.zip
+    
+    - name: Execute tests
+      run: |
+        ./Godot_v4.0.3-stable_linux.x86_64 --headless --path ./demo --export-release "Linux/X11" /dev/null
+        ./Godot_v4.0.3-stable_linux.x86_64 --headless -d -s --path ./demo addons/gut/gut_cmdln.gd
+
+  package:
+    name: 📦 Package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Create addon
+        run: |
+          mkdir addons
+          cp -R demo/addons/json_config_file addons
+          cp LICENSE.md addons/json_config_file
+
+      - name: Create package
+        run: |
+          zip -r json_config_file.zip addons
+
+      - name: Upload addon
+        uses: actions/upload-artifact@v3
+        with:
+          name: json_config_file
+          path: json_config_file.zip
