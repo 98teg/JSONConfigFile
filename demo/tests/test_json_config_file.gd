@@ -18,6 +18,7 @@ func before_each():
 func test_default_behaviour():
 	assert_valid_and_parse_eq(
 		"res://tests/files/person.json",
+		null,
 		{
 			"name": "Mr Person",
 			"age": 42.0,
@@ -34,6 +35,7 @@ func test_default_behaviour():
 
 	assert_invalid_with_error_msg_as_text(
 		"res://tests/files/not_found_person.json",
+		null,
 		(
 			"Could not open file at: %s [ERR_FILE_NOT_FOUND]."
 			% ProjectSettings.globalize_path("res://tests/files/not_found_person.json")
@@ -41,7 +43,7 @@ func test_default_behaviour():
 	)
 
 	assert_invalid_with_error_msg_as_text(
-		"res://tests/files/invalid.json", "JSON Parse Error: Unterminated String at line 11."
+		"res://tests/files/invalid.json", null, "JSON Parse Error: Unterminated String at line 11.",
 	)
 
 
@@ -67,10 +69,9 @@ func test_schema():
 
 	person_schema.add_json_config_file("parent").set_required(false).set_schema(person_schema)
 
-	json_config_file.set_schema(person_schema)
-
 	assert_valid_and_parse_eq(
 		"res://tests/files/person.json",
+		person_schema,
 		{
 			"name": "Mr Person",
 			"age": 42,
@@ -98,6 +99,7 @@ func test_schema():
 
 	assert_invalid_with_error_msgs_as_text(
 		"res://tests/files/invalid_person.json",
+		person_schema,
 		[
 			"Wrong type: expected 'string', at 'name'.",
 			"Wrong type: expected 'int', at 'age'.",
@@ -116,17 +118,23 @@ func test_schema():
 	)
 
 
-func assert_valid_and_parse_eq(path: String, expected_value: Dictionary):
-	assert_eq(json_config_file.parse(path), OK)
+func assert_valid_and_parse_eq(path: String, schema: JSONSchema, expected_value: Dictionary):
+	assert_eq(JSONConfigFile.parse_path(path, schema), expected_value)
+	assert_eq(json_config_file.parse(path, schema), OK)
 	assert_eq(json_config_file.data, expected_value)
 
 
-func assert_invalid_with_error_msg_as_text(path: String, msg_as_text: String):
-	assert_invalid_with_error_msgs_as_text(path, [msg_as_text])
+func assert_invalid_with_error_msg_as_text(path: String, schema: JSONSchema, msg_as_text: String):
+	assert_invalid_with_error_msgs_as_text(path, schema, [msg_as_text])
 
 
-func assert_invalid_with_error_msgs_as_text(path: String, msgs_as_text: Array[String]):
-	assert_eq(json_config_file.parse(path), FAILED)
+func assert_invalid_with_error_msgs_as_text(
+	path: String,
+	schema: JSONSchema,
+	msgs_as_text: Array[String]
+):
+	assert_eq(JSONConfigFile.parse_path(path, schema), null)
+	assert_eq(json_config_file.parse(path, schema), FAILED)
 	assert_eq(json_config_file.get_all_messages().size(), msgs_as_text.size())
 
 	for i in range(json_config_file.get_all_messages().size()):

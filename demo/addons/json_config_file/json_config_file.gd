@@ -8,27 +8,7 @@ const _type_name := "json_config_file"
 
 var data = null
 
-var _schema := JSONSchema.new()
-var _schema_enabled := false
-var _file_access_validator = _FileAccessValidator.new()
 var _msgs: Array[_ValidationMsg] = []
-
-
-func set_schema(new_schema: JSONSchema) -> void:
-	_schema = new_schema
-	enable_schema()
-
-
-func get_schema() -> JSONSchema:
-	return _schema
-
-
-func enable_schema() -> void:
-	_schema_enabled = true
-
-
-func disable_schema() -> void:
-	_schema_enabled = false
 
 
 func get_all_messages() -> Array[_ValidationMsg]:
@@ -36,15 +16,11 @@ func get_all_messages() -> Array[_ValidationMsg]:
 
 
 func get_error_messages() -> Array[_ValidationMsg]:
-	return _msgs.filter(
-		func(msg: _ValidationMsg): return msg.importance == _ValidationMsg.Importance.ERROR
-	)
+	return get_all_messages().filter(_msg_filter(_ValidationMsg.Importance.ERROR))
 
 
 func get_warning_messages() -> Array[_ValidationMsg]:
-	return _msgs.filter(
-		func(msg: _ValidationMsg): return msg.importance == _ValidationMsg.Importance.WARNING
-	)
+	return get_all_messages().filter(_msg_filter(_ValidationMsg.Importance.WARNING))
 
 
 func get_all_messages_as_text() -> Array[String]:
@@ -68,8 +44,8 @@ func get_warning_messages_as_text() -> Array[String]:
 	return msgs
 
 
-func parse(path: String, ignore_warnings := true) -> Error:
-	_validate(path)
+func parse(path: String, schema: JSONSchema = null, ignore_warnings := true) -> Error:
+	_msgs = _validate(path, schema)
 
 	if ignore_warnings:
 		if get_error_messages().size() > 0:
@@ -80,27 +56,51 @@ func parse(path: String, ignore_warnings := true) -> Error:
 
 	data = JSON.parse_string(FileAccess.get_file_as_string(path))
 
-	if _schema_enabled:
-		data = _schema._parse(data, path)
+	if schema != null:
+		data = schema._parse(data, path)
 
 	return OK
 
 
-func _validate(path: String) -> void:
-	_msgs = _file_access_validator._validate(path.get_file(), path)
+static func parse_path(path: String, schema: JSONSchema = null, ignore_warnings := true):
+	var msgs = _validate(path, schema)
 
-	if not _msgs.is_empty():
-		return
+	if ignore_warnings:
+		if msgs.filter(_msg_filter(_ValidationMsg.Importance.ERROR)).size() > 0:
+			return null
+	else:
+		if msgs.size() > 0:
+			return null
 
-	var file := _file_access_validator._parse(path.get_file(), path)
+	var data = JSON.parse_string(FileAccess.get_file_as_string(path))
+
+	if schema != null:
+		data = schema._parse(data, path)
+
+	return data
+
+
+static func _validate(path: String, schema: JSONSchema = null) -> Array[_ValidationMsg]:
+	var file_access_validator = _FileAccessValidator.new()
+	var msgs = file_access_validator._validate(path.get_file(), path)
+
+	if not msgs.is_empty():
+		return msgs
+
+	var file := file_access_validator._parse(path.get_file(), path)
 	var json = JSON.new()
 	if json.parse(file.get_as_text()) == OK:
-		if _schema_enabled:
-			_msgs = _schema._validate(json.data, path)
+		if schema != null:
+			msgs = schema._validate(json.data, path)
 
-		return
+		return msgs
 
-	_msgs = [_json_parse_error(json.get_error_message(), json.get_error_line())]
+	return [_json_parse_error(json.get_error_message(), json.get_error_line())]
+
+
+static func _msg_filter(importance: int) -> Callable:
+	return func(msg: _ValidationMsg):
+		return msg.importance == _ValidationMsg.Importance.ERROR
 
 
 static func _json_parse_error(message: String, line: int) -> _ValidationMsg:
