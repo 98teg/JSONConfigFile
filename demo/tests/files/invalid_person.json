@@ -1,0 +1,11 @@
+{
+	"name": 12345,
+	"age": "42",
+	"gender": 0,
+	"telephone_number": 12345,
+	"address": {
+		"street": 12345,
+		"number": "7"
+	},
+	"parent": "./invalid_parent.json"
+}

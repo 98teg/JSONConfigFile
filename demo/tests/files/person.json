@@ -1,0 +1,11 @@
+{
+	"name": "Mr Person",
+	"age": 42,
+	"gender": "MALE",
+	"telephone_number": "123 456 789",
+	"address": {
+		"street": "Long Street",
+		"number": 7
+	},
+	"parent": "./parent.json"
+}
