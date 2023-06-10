@@ -73,6 +73,12 @@ func _init():
 	_requires_json_config_file_path = true
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _FileAccessValidator:
+	_custom_parsing = new_custom_parsing
+
+	return self
+
+
 func set_open(new_mode_flags := FileAccess.READ) -> _FileAccessValidator:
 	assert(_valid_mode_flags(new_mode_flags))
 
@@ -134,14 +140,14 @@ func _valid_compression_mode(compression_mode: int) -> bool:
 	].has(compression_mode)
 
 
-func _validate(value: Variant, json_config_file_path: String) -> Array[_ValidationMsg]:
+func _validate_with_path(value: Variant, json_config_file_path: String) -> Array[_ValidationMsg]:
 	if typeof(value) != TYPE_STRING:
 		return [_ValidationMsg._wrong_type_error(_type_name)]
 
 	var msgs: Array[_ValidationMsg] = []
 
 	var path := _path(value, json_config_file_path)
-	var file := _parse(path, json_config_file_path)
+	var file := _parse_with_path(path, json_config_file_path)
 
 	if !file:
 		msgs.append(_could_not_open_file(path, FileAccess.get_open_error()))
@@ -149,7 +155,7 @@ func _validate(value: Variant, json_config_file_path: String) -> Array[_Validati
 	return msgs
 
 
-func _parse(value: Variant, json_config_file_path: String) -> FileAccess:
+func _parse_with_path(value: Variant, json_config_file_path: String) -> FileAccess:
 	var path = _path(value, json_config_file_path)
 
 	match _open_mode:

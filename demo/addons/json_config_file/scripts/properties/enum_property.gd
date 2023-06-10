@@ -20,6 +20,12 @@ func set_default_value(new_default_value: int) -> _EnumProperty:
 	return self
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _EnumProperty:
+	_validator.set_custom_parsing(new_custom_parsing)
+
+	return self
+
+
 func add_value(name: StringName, value: int) -> _EnumProperty:
 	_validator.add_value(name, value)
 

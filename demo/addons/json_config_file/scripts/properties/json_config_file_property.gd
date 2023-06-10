@@ -20,6 +20,12 @@ func set_default_value(new_default_value: Dictionary) -> _JSONConfigFileProperty
 	return self
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _JSONConfigFileProperty:
+	_validator.set_custom_parsing(new_custom_parsing)
+
+	return self
+
+
 func set_schema(new_schema: JSONSchema) -> _JSONConfigFileProperty:
 	_validator.set_schema(new_schema)
 

@@ -20,6 +20,12 @@ func set_default_value(new_default_value: FileAccess) -> _FileAccessProperty:
 	return self
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _FileAccessProperty:
+	_validator.set_custom_parsing(new_custom_parsing)
+
+	return self
+
+
 func set_open(new_mode_flags := FileAccess.READ) -> _FileAccessProperty:
 	_validator.set_open(new_mode_flags)
 

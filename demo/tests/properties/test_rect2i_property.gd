@@ -26,6 +26,17 @@ func test_default_value():
 	assert_has_default_value(Rect2i(0, 0, 1, 1))
 
 
+func test_custom_parsing():
+	schema_add_attr().set_custom_parsing(func(value: Rect2i) -> Rect2i: return Rect2i(
+		value.position.x * 2,
+		value.position.y * 2,
+		value.size.x * 2,
+		value.size.y * 2,
+	))
+
+	assert_valid_and_parse_eq({"x": 1, "y": 2, "w": 3, "h": 4}, Rect2i(2, 4, 6, 8))
+
+
 func test_min_position():
 	schema_add_attr().set_min_position(Vector2i.ZERO)
 

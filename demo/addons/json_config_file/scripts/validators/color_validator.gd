@@ -1,5 +1,13 @@
 extends "./validator.gd"
 
+const _ColorValidator := preload("./color_validator.gd")
+
+
+func set_custom_parsing(new_custom_parsing: Callable) -> _ColorValidator:
+	_custom_parsing = new_custom_parsing
+
+	return self
+
 
 func _schema() -> JSONSchema:
 	var schema := JSONSchema.new()
@@ -20,8 +28,8 @@ func _parse(value: Variant) -> Color:
 	var parsed_value = _schema()._parse(value)
 
 	return Color(
-		parsed_value.r / 255.0,
-		parsed_value.g / 255.0,
-		parsed_value.b / 255.0,
-		parsed_value.a / 255.0
+		value.r / 255.0,
+		value.g / 255.0,
+		value.b / 255.0,
+		value.a / 255.0
 	)

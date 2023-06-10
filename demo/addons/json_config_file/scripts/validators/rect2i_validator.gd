@@ -12,6 +12,12 @@ var _max_size := Vector2.ZERO
 var _max_size_enabled := false
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _Rect2iValidator:
+	_custom_parsing = new_custom_parsing
+
+	return self
+
+
 func set_min_position(new_min_position: Vector2i) -> _Rect2iValidator:
 	_min_position = new_min_position
 	_min_position_enabled = true

@@ -18,6 +18,19 @@ func test_default_value():
 	assert_has_default_value(file_access)
 
 
+func test_custom_parsing():
+	schema_add_attr().set_custom_parsing(func(value: FileAccess) -> String:
+		return value.get_as_text().get_slice("\n", 0)
+	)
+
+	set_json_config_file_path("res://tests/properties/files/imaginary.json")
+
+	assert_valid_and_parse_eq(
+		"res://tests/properties/files/text_file.txt",
+		"This is a text file used for testing purposes."
+	)
+
+
 func test_open():
 	schema_add_attr()
 

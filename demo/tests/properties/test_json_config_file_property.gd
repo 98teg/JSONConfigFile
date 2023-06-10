@@ -43,6 +43,16 @@ func test_default_value():
 	assert_has_default_value({"id": -1})
 
 
+func test_custom_parsing():
+	schema_add_attr().set_custom_parsing(func(value: Dictionary) -> int:
+		return value.id
+	)
+
+	set_json_config_file_path("res://tests/properties/files/imaginary.json")
+
+	assert_valid_and_parse_eq("res://tests/properties/files/json_config_file.json", 1)
+
+
 func test_schema():
 	var nested_schema := JSONSchema.new()
 	nested_schema.add_int("id")

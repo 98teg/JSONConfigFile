@@ -8,6 +8,12 @@ var _max := Vector3i.ZERO
 var _max_enabled := false
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _Vector3iValidator:
+	_custom_parsing = new_custom_parsing
+
+	return self
+
+
 func set_min(new_min: Vector3i) -> _Vector3iValidator:
 	_min = new_min
 	_min_enabled = true

@@ -163,12 +163,9 @@ func _validate(value: Variant, json_config_file_path := "") -> Array[_Validation
 		if value.has(property._name):
 			var property_msgs: Array
 
-			if property._validator._requires_json_config_file_path:
-				property_msgs = property._validator._validate(
-					value[property._name], json_config_file_path
-				)
-			else:
-				property_msgs = property._validator._validate(value[property._name])
+			property_msgs = property._validator._validate_with_custom_validation(
+				value[property._name], json_config_file_path
+			)
 
 			for msg in property_msgs:
 				msg._add_context_level(property._name)
@@ -205,12 +202,9 @@ func _parse(value: Variant, json_config_file_path := "") -> Dictionary:
 
 	for property in _properties:
 		if result.has(property._name):
-			if property._validator._requires_json_config_file_path:
-				result[property._name] = property._validator._parse(
-					result[property._name], json_config_file_path
-				)
-			else:
-				result[property._name] = property._validator._parse(result[property._name])
+			result[property._name] = property._validator._parse_with_custom_parsing(
+				result[property._name], json_config_file_path
+			)
 		elif property._default_value != null:
 			result[property._name] = property._default_value
 

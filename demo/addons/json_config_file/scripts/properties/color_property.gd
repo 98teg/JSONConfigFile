@@ -18,3 +18,9 @@ func set_default_value(new_default_value: Color) -> _ColorProperty:
 	_default_value = new_default_value
 
 	return self
+
+
+func set_custom_parsing(new_custom_parsing: Callable) -> _ColorProperty:
+	_validator.set_custom_parsing(new_custom_parsing)
+
+	return self

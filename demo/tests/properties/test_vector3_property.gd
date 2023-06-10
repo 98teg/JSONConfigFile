@@ -25,6 +25,16 @@ func test_default_value():
 	assert_has_default_value(Vector3.ONE)
 
 
+func test_custom_parsing():
+	schema_add_attr().set_custom_parsing(func(value: Vector3) -> Vector3: return Vector3(
+		value.x * 2,
+		value.y * 2,
+		value.z * 2,
+	))
+
+	assert_valid_and_parse_eq({"x": 1.1, "y": 2.2, "z": 3.3}, Vector3(2.2, 4.4, 6.6))
+
+
 func test_min():
 	schema_add_attr().set_min(Vector3.ZERO)
 

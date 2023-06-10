@@ -23,10 +23,31 @@ func test_default_value():
 	assert_has_default_value(Gender.MALE)
 
 
-func test_add_value():
-	schema_add_attr().add_value("MALE", Gender.MALE).add_value("FEMALE", Gender.FEMALE).add_value(
-		"NON_BINARY", Gender.NON_BINARY
+func test_custom_parsing():
+	schema_add_attr()\
+		.add_value("MALE", Gender.MALE)\
+		.add_value("FEMALE", Gender.FEMALE)\
+		.add_value("NON_BINARY", Gender.NON_BINARY)\
+		.set_custom_parsing(func(value: Gender) -> Gender:
+			match(value):
+				Gender.MALE:
+					return Gender.FEMALE
+				Gender.FEMALE:
+					return Gender.MALE
+			
+			return Gender.NON_BINARY
 	)
+
+	assert_valid_and_parse_eq("MALE", Gender.FEMALE)
+	assert_valid_and_parse_eq("FEMALE", Gender.MALE)
+	assert_valid_and_parse_eq("NON_BINARY", Gender.NON_BINARY)
+
+
+func test_add_value():
+	schema_add_attr()\
+		.add_value("MALE", Gender.MALE)\
+		.add_value("FEMALE", Gender.FEMALE)\
+		.add_value("NON_BINARY", Gender.NON_BINARY)
 
 	assert_valid_and_parse_eq("MALE", Gender.MALE)
 	assert_valid_and_parse_eq("FEMALE", Gender.FEMALE)

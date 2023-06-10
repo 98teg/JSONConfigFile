@@ -20,6 +20,12 @@ func test_default_value():
 	assert_has_default_value("empty")
 
 
+func test_custom_parsing():
+	schema_add_attr().set_custom_parsing(func(value: String) -> String: return "custom " + value)
+
+	assert_valid_and_parse_eq("string", "custom string")
+
+
 func test_min():
 	schema_add_attr().set_min(1)
 

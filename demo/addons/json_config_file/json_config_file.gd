@@ -82,12 +82,12 @@ static func parse_path(path: String, schema: JSONSchema = null, ignore_warnings 
 
 static func _validate(path: String, schema: JSONSchema = null) -> Array[_ValidationMsg]:
 	var file_access_validator = _FileAccessValidator.new()
-	var msgs = file_access_validator._validate(path.get_file(), path)
+	var msgs = file_access_validator._validate_with_custom_validation(path.get_file(), path)
 
 	if not msgs.is_empty():
 		return msgs
 
-	var file := file_access_validator._parse(path.get_file(), path)
+	var file := file_access_validator._parse_with_path(path.get_file(), path)
 	var json = JSON.new()
 	if json.parse(file.get_as_text()) == OK:
 		if schema != null:

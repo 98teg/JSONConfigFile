@@ -8,6 +8,12 @@ var _max := Vector2i.ZERO
 var _max_enabled := false
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _Vector2iValidator:
+	_custom_parsing = new_custom_parsing
+
+	return self
+
+
 func set_min(new_min: Vector2i) -> _Vector2iValidator:
 	_min = new_min
 	_min_enabled = true

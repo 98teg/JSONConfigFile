@@ -18,3 +18,10 @@ func test_default_value():
 	schema_add_attr().set_default_value(true)
 
 	assert_has_default_value(true)
+
+
+func test_custom_parsing():
+	schema_add_attr().set_custom_parsing(func(value: bool) -> bool: return !value)
+
+	assert_valid_and_parse_eq(true, false)
+	assert_valid_and_parse_eq(false, true)

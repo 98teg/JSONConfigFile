@@ -20,6 +20,14 @@ func test_default_value():
 	assert_has_default_value({"id": -1})
 
 
+func test_custom_parsing():
+	schema_add_attr().set_custom_parsing(func(value: Dictionary) -> Vector4:
+		return Vector4(value.x, value.y, value.z, value.w)
+	)
+
+	assert_valid_and_parse_eq({"x": 1, "y": 2, "z": 3, "w": 4}, Vector4(1, 2, 3, 4))
+
+
 func test_schema():
 	var nested_schema := JSONSchema.new()
 	nested_schema.add_int("id").set_min(0)

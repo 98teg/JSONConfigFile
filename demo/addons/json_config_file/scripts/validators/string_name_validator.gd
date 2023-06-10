@@ -6,6 +6,12 @@ const _StringValidator := preload("./string_validator.gd")
 var _string_validator := _StringValidator.new()
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _StringNameValidator:
+	_custom_parsing = new_custom_parsing
+
+	return self
+
+
 func set_min(new_min_length: int) -> _StringNameValidator:
 	_string_validator.set_min(new_min_length)
 

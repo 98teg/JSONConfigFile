@@ -12,6 +12,12 @@ var _pattern := RegEx.new()
 var _pattern_enabled := false
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _StringValidator:
+	_custom_parsing = new_custom_parsing
+
+	return self
+
+
 func set_min(new_min_length: int) -> _StringValidator:
 	_min_length = new_min_length
 	_min_length_enabled = true

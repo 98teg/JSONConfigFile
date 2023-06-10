@@ -8,6 +8,12 @@ var _schema: JSONSchema
 var _schema_enabled := false
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _DictionaryValidator:
+	_custom_parsing = new_custom_parsing
+
+	return self
+
+
 func set_schema(new_schema: JSONSchema) -> _DictionaryValidator:
 	_schema = new_schema
 	_schema_enabled = true

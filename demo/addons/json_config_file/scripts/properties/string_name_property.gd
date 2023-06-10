@@ -20,6 +20,12 @@ func set_default_value(new_default_value: StringName) -> _StringNameProperty:
 	return self
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _StringNameProperty:
+	_validator.set_custom_parsing(new_custom_parsing)
+
+	return self
+
+
 func set_min(new_min_length: int) -> _StringNameProperty:
 	_validator.set_min(new_min_length)
 

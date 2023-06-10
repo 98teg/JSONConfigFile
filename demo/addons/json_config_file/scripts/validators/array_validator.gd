@@ -30,6 +30,16 @@ var _validator: Object
 var _validator_enabled := false
 
 
+func _init():
+	_requires_json_config_file_path = true
+
+
+func set_custom_parsing(new_custom_parsing: Callable) -> _ArrayValidator:
+	_custom_parsing = new_custom_parsing
+
+	return self
+
+
 func set_min_size(new_min_size: int) -> _ArrayValidator:
 	_min_size = new_min_size
 	_min_size_enabled = true
@@ -131,7 +141,7 @@ func _set_validator(validator_script: Script) -> Object:
 	return _validator
 
 
-func _validate(value: Variant) -> Array[_ValidationMsg]:
+func _validate_with_path(value: Variant, json_config_file_path: String) -> Array[_ValidationMsg]:
 	if typeof(value) != TYPE_ARRAY:
 		return [_ValidationMsg._wrong_type_error(_type_name)]
 
@@ -146,7 +156,10 @@ func _validate(value: Variant) -> Array[_ValidationMsg]:
 	if _validator_enabled:
 		var i := 0
 		for element in value:
-			var element_msgs: Array = _validator._validate(element)
+			var element_msgs: Array = _validator._validate_with_custom_validation(
+				element,
+				json_config_file_path,
+			)
 
 			for msg in element_msgs:
 				msg._add_context_level(i)
@@ -163,9 +176,12 @@ func _validate(value: Variant) -> Array[_ValidationMsg]:
 	return msgs
 
 
-func _parse(value: Variant) -> Array:
+func _parse_with_path(value: Variant, json_config_file_path: String) -> Array:
 	if _validator_enabled:
-		return value.map(func (element): return _validator._parse(element))
+		return value.map(func (element): return _validator._parse_with_custom_parsing(
+			element,
+			json_config_file_path,
+		))
 
 	return value
 

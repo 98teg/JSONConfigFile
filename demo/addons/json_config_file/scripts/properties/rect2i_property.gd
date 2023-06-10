@@ -20,6 +20,12 @@ func set_default_value(new_default_value: Rect2i) -> _Rect2iProperty:
 	return self
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _Rect2iProperty:
+	_validator.set_custom_parsing(new_custom_parsing)
+
+	return self
+
+
 func set_min_position(new_min_position: Vector2i) -> _Rect2iProperty:
 	_validator.set_min_position(new_min_position)
 

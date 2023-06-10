@@ -23,6 +23,12 @@ func test_default_value():
 	assert_has_default_value(1)
 
 
+func test_custom_parsing():
+	schema_add_attr().set_custom_parsing(func(value: int) -> int: return value * 2)
+
+	assert_valid_and_parse_eq(2, 4)
+
+
 func test_min():
 	schema_add_attr().set_min(0)
 

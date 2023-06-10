@@ -7,6 +7,12 @@ const _type_name := "string"
 var _values_map := {}
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _EnumValidator:
+	_custom_parsing = new_custom_parsing
+
+	return self
+
+
 func add_value(name: StringName, value: int) -> _EnumValidator:
 	_values_map[name] = value
 

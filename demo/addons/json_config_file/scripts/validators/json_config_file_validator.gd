@@ -12,13 +12,19 @@ func _init():
 	_requires_json_config_file_path = true
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _JSONConfigFileValidator:
+	_custom_parsing = new_custom_parsing
+
+	return self
+
+
 func set_schema(new_schema: JSONSchema) -> _JSONConfigFileValidator:
 	_schema = new_schema
 
 	return self
 
 
-func _validate(value: Variant, json_config_file_path: String) -> Array[_ValidationMsg]:
+func _validate_with_path(value: Variant, json_config_file_path: String) -> Array[_ValidationMsg]:
 	if typeof(value) != TYPE_STRING:
 		return [_ValidationMsg._wrong_type_error(_type_name)]
 
@@ -27,7 +33,7 @@ func _validate(value: Variant, json_config_file_path: String) -> Array[_Validati
 	return _json_config_file.get_all_messages()
 
 
-func _parse(value: Variant, json_config_file_path: String) -> Dictionary:
+func _parse_with_path(value: Variant, json_config_file_path: String) -> Dictionary:
 	_json_config_file.parse(_path(value, json_config_file_path), _schema)
 	
 	return _json_config_file.data

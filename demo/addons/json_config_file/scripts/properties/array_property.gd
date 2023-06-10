@@ -22,6 +22,12 @@ func set_default_value(new_default_value: Array) -> _ArrayProperty:
 	return self
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _ArrayProperty:
+	_validator.set_custom_parsing(new_custom_parsing)
+
+	return self
+
+
 func set_min_size(new_min_size: int) -> _ArrayProperty:
 	_validator.set_min_size(new_min_size)
 

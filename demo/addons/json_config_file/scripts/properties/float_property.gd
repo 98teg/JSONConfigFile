@@ -20,6 +20,12 @@ func set_default_value(new_default_value: float) -> _FloatProperty:
 	return self
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _FloatProperty:
+	_validator.set_custom_parsing(new_custom_parsing)
+
+	return self
+
+
 func set_min(new_min: float) -> _FloatProperty:
 	_validator.set_min(new_min)
 

@@ -88,3 +88,9 @@ func test_default_value():
 	schema_add_attr().set_default_value(Color.RED)
 
 	assert_has_default_value(Color.RED)
+
+
+func test_custom_parsing():
+	schema_add_attr().set_custom_parsing(func(value: Color) -> Color: return value.darkened(0.25))
+
+	assert_valid_and_parse_eq({"r": 255, "g": 255, "b": 255}, Color(0.75, 0.75, 0.75))

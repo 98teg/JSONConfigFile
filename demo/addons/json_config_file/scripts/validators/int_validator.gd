@@ -10,6 +10,12 @@ var _max := 0
 var _max_enabled := false
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _IntValidator:
+	_custom_parsing = new_custom_parsing
+
+	return self
+
+
 func set_min(new_min: int) -> _IntValidator:
 	_min = new_min
 	_min_enabled = true

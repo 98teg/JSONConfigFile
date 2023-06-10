@@ -20,6 +20,12 @@ func set_default_value(new_default_value: Vector3) -> _Vector3Property:
 	return self
 
 
+func set_custom_parsing(new_custom_parsing: Callable) -> _Vector3Property:
+	_validator.set_custom_parsing(new_custom_parsing)
+
+	return self
+
+
 func set_min(new_min: Vector3) -> _Vector3Property:
 	_validator.set_min(new_min)
 
